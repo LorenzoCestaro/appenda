@@ -7,26 +7,77 @@
     <title>Artoo Campus - Controllers</title>
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="ui/appbar/appbar.css">
+    <link rel="stylesheet" href="ui/form/form.css">
   </head>
   
   <body ng-app="artoo">
     <appbar></appbar>
     
-    <!-- load the item controller -->
+    <!-- create another controller that manages data 
+    such as player and game info -->
+    <div ng-controller="PlayerCtrl">
+      <h3>Player</h3>
+      <h5>Is the player dead? <em>{{ isDead() }}</em></h5>
+      <div>
+        <strong>Name:</strong> <span ng-bind="::player.name"></span>
+      </div>
+      <div>
+        <strong>Race:</strong> <span ng-bind="player.race"></span>
+      </div>
+      <div>
+        <strong>HP:</strong> <span ng-bind="player.hp"></span>
+      </div>
+      <div>
+        <strong>EXP:</strong> <span ng-bind="player.exp"></span>
+      </div>
+      <div>
+        <strong>Level:</strong> <span ng-bind="player.level"></span>
+      </div>
+      <button ng-click="levelUp()">LevelUp</button>
+      <button ng-click="gainExp(30)">Gain EXP</button>
+      <button ng-click="takeDamage(30)">Take hit</button>
+    </div> <!-- Player ng-controller -->
+    
+    <hr>
     
     <!-- bind the item controller to an element -->
-    
+    <div ng-hide="!item" ng-controller="ItemsCtrl">
+      <h3>Item</h3>
     <!-- interpolate the data to the view -->
-    
+      <div>
+        <strong>Name:</strong> <span ng-bind="item.name"></span>
+      </div>
+      <div ng-show="visibleDescription">
+        <strong>Description:</strong> <span ng-bind="item.description"></span>
+      </div>
+      <button ng-click="toggleDescription()">
+        <span ng-show="visibleDescription">Hide</span>
+        <span ng-hide="visibleDescription">Show</span>
+        description
+      </button>
+      <div>
+      </div>
+        <strong>Slots:</strong> <span ng-bind="item.slots"></span>
+      <div>
+      <div>
+        <strong>Fits in bag?</strong> {{ checkIfFits(item, 5) }}
+      </div>
+        <img ng-hide="!item" ng-src="{{ item.image }}" alt="">
+      </div>
+      
     <!-- understanding the scope -->
-    
+      
     <!-- add handles for behaviours -->
-    
-    <!-- create another controller for the player for managing data such as personal and game info -->
+    <button ng-click="dispose()">Dispose</button>
+    </div> <!-- Items ng-controller -->
     
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="ui/appbar/appbar.js"></script>
-
+    <!-- load the app -->
     <script src="subjects/controllers/app.js"></script>
+    <!-- load the item controller -->
+    <script src="subjects/controllers/items.controller.js"></script>
+    <!-- load the player controller -->
+    <script src="subjects/controllers/player.controller.js"></script>
   </body>
 </html>
