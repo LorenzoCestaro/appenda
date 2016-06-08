@@ -7,22 +7,62 @@
     <title>Artoo Campus - Services</title>
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="ui/appbar/appbar.css">
+    <link rel="stylesheet" href="ui/form/form.css">
   </head>
   
   <body ng-app="artoo">
     <appbar></appbar>
     
-    <!-- create an items service with the following methods: get, add, remove, etc -->
-    
-    <!-- create a controller to expose the service to the view -->
-    
     <!-- create a user service with the following methods: getStatus, takeHit, drinkPotion, useMana, useGem, gainExp, die, respawn -->
-    
     <!-- create a controller to expose the service to the view -->
+    <div ng-controller="PlayerCtrl">
+      <h2>Player</h2>
+      
+      <div><strong>Level: </strong>{{ PlayerSrv.getPlayer().level }}</div>
+      <div><strong>HP: </strong>{{ PlayerSrv.getPlayer().hp }}</div>
+      <div><strong>Alive: </strong>{{ PlayerSrv.isAlive() }}</div>
+      <div style="margin-top: 10px">
+        <button ng-show="PlayerSrv.isAlive()" ng-click="PlayerSrv.takeHit()">Take hit</button>
+        <button ng-show="PlayerSrv.isAlive()" ng-click="PlayerSrv.drinkPotion()">Drink a potion</button>
+        <button ng-show="PlayerSrv.isAlive()" ng-click="PlayerSrv.levelUp()">Level UP!</button>
+        <button ng-show="PlayerSrv.isAlive()" ng-click="PlayerSrv.die()">Kill</button>
+        <button ng-hide="PlayerSrv.isAlive()" ng-click="PlayerSrv.respawn()">Respawn</button>
+      </div>
+      
+    </div>
+    
+    <hr>
+    
+    <!-- create an items service with the following methods: get, increaseAvailability remove -->
+    <!-- create a controller to expose the service to the view -->
+    <div ng-controller="ItemsCtrl">
+      <h2>Items</h2>
+      
+      <div ng-repeat="item in ItemsSrv.get()">
+        <h4><strong>Item #{{ $index + 1 }}</strong></h4>
+        <div><strong>Name: </strong>{{ item.name }}</div>
+        <div><strong>Description: </strong>{{ item.description }}</div>
+        <div><strong>Price: </strong>{{ item.price }}</div>
+        <div><strong>Availability: </strong>{{ item.availability }}</div>
+        <div><strong>Races: </strong>{{ item.races }}</div>
+        <div style="margin-top: 10px">
+          <button ng-click="ItemsSrv.updateAvailability(item, +1)">+1</button>
+          <button ng-click="ItemsSrv.updateAvailability(item, -1)">-1</button>
+          <button ng-click="ItemsSrv.remove(item)">Remove item</button>
+        </div>
+        <hr>
+      </div>
+      
+    </div>
     
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="ui/appbar/appbar.js"></script>
     <script src="subjects/services/app.js"></script>
+    <!-- inclusion order below does not matter, angular manages dependencies -->
+    <script src="subjects/services/items.service.js"></script>
+    <script src="subjects/services/items.controller.js"></script>
+    <script src="subjects/services/player.service.js"></script>
+    <script src="subjects/services/player.controller.js"></script>
     
     <!-- include items service -->
     

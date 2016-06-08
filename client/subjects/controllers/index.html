@@ -45,10 +45,10 @@
       <h3>Item</h3>
     <!-- interpolate the data to the view -->
       <div>
-        <strong>Name:</strong> <span ng-bind="item.name"></span>
+        <strong>Name:</strong> <span ng-bind="::item.name"></span>
       </div>
       <div ng-show="visibleDescription">
-        <strong>Description:</strong> <span ng-bind="item.description"></span>
+        <strong>Description:</strong> <span ng-bind="::item.description"></span>
       </div>
       <button ng-click="toggleDescription()">
         <span ng-show="visibleDescription">Hide</span>
