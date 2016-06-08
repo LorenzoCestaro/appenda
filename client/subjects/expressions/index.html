@@ -13,18 +13,26 @@
     <appbar></appbar>
     
     <!-- numeric operations -->
-    <div>3 + 7 = </div>
+    <div>3 + 7 = {{ ::3 + 7 }}</div>
     
     <!-- operations on strings -->
-    <div>foo + bar = </div>
+    <div>foo + bar = {{ ::"foo" + "bar" }}</div>
     
-    <div ng-init="user = {name: 'John', surnmae: 'Doe', age: 27}">
+    <div ng-init="user = {name: 'Lorenzo', surname: 'Cestaro', age: 25}">
       <!-- interpolation -->
-      <div>Il mio nome è: </div>
-      <div>La mia età è: </div>
+      <div>Il mio nome è: {{ ::user.name }}</div>
+      <!-- binding with span prevents flickering, 
+      in angular 2 you can bind only with {{}} as the flickering has been solved -->
+      <div>La mia età è: <span ng-bind="::user.age"></span></div>
       
-      <div ng-init="currentYear = 2016">Ora siamo nell'anno: </div>
+      <!-- :: defines a one time binding, ther is no watching for the variable change -->
+      <div ng-init="currentYear = 2016">
+        Ora siamo nell'anno: {{ ::currentYear }} <em>-- one time binding</em>
+        </div>
       
+      <div>Reactive year: {{ currentYear }} <em>-- normal binding</em></div>
+      
+      <button ng-click="currentYear = currentYear + 1">+1 year</button>
       <!-- understanding the one-time binding with a +1 button -->
     </div>
     
