@@ -17,15 +17,16 @@
     <!-- create a controller to expose the service to the view -->
     <div ng-controller="PlayerCtrl">
       <h2>Player</h2>
-      
       <div><strong>Level: </strong>{{ PlayerSrv.getPlayer().level }}</div>
       <div><strong>HP: </strong>{{ PlayerSrv.getPlayer().hp }}</div>
       <div><strong>Alive: </strong>{{ PlayerSrv.isAlive() }}</div>
       <div style="margin-top: 10px">
-        <button ng-show="PlayerSrv.isAlive()" ng-click="PlayerSrv.takeHit()">Take hit</button>
-        <button ng-show="PlayerSrv.isAlive()" ng-click="PlayerSrv.drinkPotion()">Drink a potion</button>
-        <button ng-show="PlayerSrv.isAlive()" ng-click="PlayerSrv.levelUp()">Level UP!</button>
-        <button ng-show="PlayerSrv.isAlive()" ng-click="PlayerSrv.die()">Kill</button>
+        <span ng-show="PlayerSrv.isAlive()">
+          <button ng-click="PlayerSrv.takeHit()">Take hit</button>
+          <button ng-click="PlayerSrv.drinkPotion()">Drink a potion</button>
+          <button ng-click="PlayerSrv.levelUp()">Level UP!</button>
+          <button ng-click="PlayerSrv.die()">Kill</button>
+        </span>
         <button ng-hide="PlayerSrv.isAlive()" ng-click="PlayerSrv.respawn()">Respawn</button>
       </div>
       
