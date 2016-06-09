@@ -35,9 +35,24 @@ npm install
 ### Quests
 ![Quests 4](https://assets.moqups.com/57dqoZC60v/Page_1.png)
 
+___
 
 ## Project
-Project name
+Agenda - appointments manager
 
-### Features
-* First feature
+### Team members
+* [Silvia Peveri](https://github.com/silviapeveri) 
+* [Alessandro Covre](https://github.com/AlessandroCovre) 
+* [Mattia De Luca](https://github.com/Selfrules) 
+* [Erik Szalai](https://github.com/ErikSzalai) 
+* [Lorenzo Cestaro](https://github.com/LorenzoCestaro) 
+
+### User stories
+* As a user, I can insert a new contact.
+* As a user, I can insert a new event in the agenda.
+* As a user, I can bind an event to one or more contacts.
+* As a user, I can check event details.
+* As a user, I can edit a contact.
+* As a user, I can edit an event.
+* As a user, I can filter events by the contact/s binded to it.
+* As a user, I can filter events by date.
