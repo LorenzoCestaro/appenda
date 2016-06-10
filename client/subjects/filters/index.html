@@ -7,33 +7,95 @@
     <title>Artoo Campus - Filters</title>
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="ui/appbar/appbar.css">
-    <link rel="stylesheet" href="ui/form/form.css">
+    <!--<link rel="stylesheet" href="ui/form/form.css">-->
   </head>
   
   <body ng-app="artoo">
     <appbar></appbar>
     
     <!-- get a list of items -->
-    <ul>
-      <li ng-repeat="item in ::items">{{::item}}</li>
-    </ul>
+    <div ng-controller="ItemsCtrl">
+      
+      <h2>Order By</h2>
+      <div class="row">
+        <select name="orderBySelect" 
+                ng-options="option.prop as option.title for option in orderByOptions"
+                ng-model="selectedOrderByOption">
+        </select>
+      </div>
+      
+      <div class="row">
+        <label for="reverse">
+          Reverse?
+          <input name="reverse" type="checkbox" ng-model="selectedReverse">
+        </label>
+      </div>
+      
+      <h2>Filter</h2>
+      <!--search.$ searches in all the obj properties-->
+      
+      <div class="row">
+        <input type="text" ng-model="search[selectedFilterProp]">
+        
+        <label for="searchRadio">
+          All
+          <input type="radio" name="filterProp" ng-model="selectedFilterProp" value="$" checked="checked">
+        </label>
+        
+        <label for="searchRadio">
+          Name
+          <input type="radio" name="filterProp" ng-model="selectedFilterProp" value="name">
+        </label>
+        
+        <label for="searchRadio">
+          Description
+          <input type="radio" name="filterProp" ng-model="selectedFilterProp" value="description">
+        </label>
+      </div>
+      
+      <div class="row">
+        <label for="suitability">
+          Show only suitable items
+          <input name="suitability" type="checkbox" ng-model="onlySuitable">
+        </label>
+      </div>
+      
+      <h2>Items</h2>
+      <ul style="list-style: none">
+        <li ng-repeat="item in items | 
+                      suitability : onlySuitable |
+                      filter : search | 
+                      orderBy : selectedOrderByOption : selectedReverse">
+          <h4>{{ ::item.name }}</h4>
+          <p><em>Price:</em> {{ ::item.price | price }}</p>
+          <p><em>Availability:</em> {{ ::item.availability | availability }}</p>
+          <p><em>Description:</em> {{ ::item.description }}</p>
+          <p><em>Races:</em> {{ ::item.races | races }}</p>
+          <!--Filter piping-->
+          <p><em>Suitable:</em> {{ ::item.races | suitable | yesOrNo }}</p>
+          <p>
+            <em>Created the day:</em> {{ ::item.createdAt | date : 'dd/MM/yyyy' }}
+            at {{ ::item.createdAt | date : 'hh:mm:ss:ms' }}
+          </p>
+          <hr>
+        </li>
+      </ul>
+    </div>
     
     <!-- sort items by price -->
-    
     <!-- sort items by name -->
-    
     <!-- filter items for name -->
-    
     <!-- implement a filter for prices -->
-    
     <!-- implement a filter for availability -->
-    
-    <!-- implement a filter for suitabilty -->
-    
     <!-- implement a filter for races -->
+    <!-- implement a filter for suitabilty -->
     
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="ui/appbar/appbar.js"></script>
     <script src="subjects/filters/app.js"></script>
+    <script src="subjects/filters/items.filter.js"></script>
+    <script src="subjects/filters/text.filter.js"></script>
+    <script src="subjects/filters/items.controller.js"></script>
+    <script src="subjects/filters/player.service.js"></script>
   </body>
 </html>
