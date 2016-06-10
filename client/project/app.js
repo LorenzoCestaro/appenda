@@ -1,1 +1,1 @@
-angular.module('appenda').run();
+angular.module('appenda', []);
