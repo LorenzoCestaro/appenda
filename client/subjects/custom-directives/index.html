@@ -7,17 +7,65 @@
     <title>Artoo Campus - Custom Directives</title>
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="ui/appbar/appbar.css">
+    <link rel="stylesheet" href="ui/form/form.css">
   </head>
   
   <body ng-app="artoo">
     <appbar></appbar>
     
     <!-- create a custom directive that applies css properties to an element -->
+    <div ng-controller="CssCtrl">
+      <div css-adder="options">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla luctus.
+      </div>
+      
+      <p css-adder="{typology: 'dashed'}">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget rutrum
+        augue. Sed eget vehicula est. Quisque ac lorem metus. Suspendisse mattis, 
+        ante congue vulputate condimentum, magna leo pretium. Lorem ipsum dolor 
+        sit amet, consectetur adipiscing elit. Fusce eget rutrum augue. Sed eget 
+        vehicula est. Quisque ac lorem metus. Suspendisse mattis, ante congue 
+        vulputate condimentum, magna leo pretium. Lorem ipsum dolor sit amet, 
+        consectetur adipiscing elit. Fusce eget rutrum augue. Sed eget vehicula 
+        est. Quisque ac lorem metus. Suspendisse mattis, ante congue vulputate 
+        condimentum, magna leo pretium.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget rutrum
+        augue. Sed eget vehicula est. Quisque ac lorem metus. Suspendisse mattis, 
+        ante congue vulputate condimentum, magna leo pretium. Lorem ipsum dolor 
+        sit amet, consectetur adipiscing elit. Fusce eget rutrum augue. Sed eget 
+        vehicula est. Quisque ac lorem metus. Suspendisse mattis, ante congue 
+        vulputate condimentum, magna leo pretium. Lorem ipsum dolor sit amet, 
+        consectetur adipiscing elit. Fusce eget rutrum augue. Sed eget vehicula 
+        est. Quisque ac lorem metus. Suspendisse mattis, ante congue vulputate 
+        condimentum, magna leo pretium.
+      </p>
+    </div>
     
     <!-- create a custom directive that logs player's click actions -->
+    
+    <div class="row">
+      <button id="figth-button" class="btn" log="fight">Fight!</button>
+      <button id="peace-button" class="btn" log="peace">Peace!</button>
+      <button id="peace-button" class="btn" log="fart">Fart!</button>
+      <button id="peace-button" class="btn" log="potion">Drink a potion</button>
+    </div>
+    
+    <div ng-controller="PlayerCtrl">
+      <h2>Player Logs</h2>
+      <ul>
+        <li ng-repeat="log in PlayerSrv.getLogs()">
+          {{ log.date | date : "hh:mm:ss" }}: {{ log.text }}
+        </li>
+      </ul>
+    </div>
     
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="ui/appbar/appbar.js"></script>
     <script src="subjects/custom-directives/app.js"></script>
+    <script src="subjects/custom-directives/log.directive.js"></script>
+    <script src="subjects/custom-directives/css.directive.js"></script>
+    <script src="subjects/custom-directives/css.controller.js"></script>
+    <script src="subjects/custom-directives/player.service.js"></script>
+    <script src="subjects/custom-directives/player.controller.js"></script>
   </body>
 </html>
