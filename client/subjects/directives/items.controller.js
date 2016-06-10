@@ -46,7 +46,6 @@ angular.module('artoo').controller('ItemsCtrl', function ($scope) {
   };
   
   $scope.buy = function (item) {
-    console.info('Just bought this item: ' + item.name);
     $scope.items.forEach(function (singleItem) {
       if (singleItem.code == item.code) {
         singleItem.availability -= 1;
