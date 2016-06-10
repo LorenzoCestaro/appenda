@@ -7,17 +7,39 @@
     <title>Artoo Campus - Directives</title>
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="ui/appbar/appbar.css">
+    <link rel="stylesheet" href="ui/form/form.css">
+    <link rel="stylesheet" href="subjects/directives/style.css">
   </head>
   
   <body ng-app="artoo">
     <appbar></appbar>
     
+    <div ng-controller="ItemsCtrl">
+      
+      <ul>
+        <!--ng-if completely deletes the repeats that do not satisfy the 
+        condition instead of only hiding them as ng-hide/ng-show does-->
+        <li class="item"
+            ng-repeat="item in items" 
+            ng-class="{unavailable: item.availability === 0, 
+                      available: item.availability > 0}">
+          <h4>{{ ::item.name }}</h4>
+          <p><em>Quantity:</em> {{ item.availability }}</p>
+          <!--The following values are updated with every change (sort or filter)
+          <p><em>Index:</em> {{ $index }}</p>
+          <p><em>First:</em> {{ $first }}</p>
+          <p><em>Last:</em> {{ $last }}</p>
+          <p><em>Odd:</em> {{ $odd }}</p>
+          <p><em>Even:</em> {{ $even }}</p>-->
+          <button ng-disabled="!item.availability" ng-click="buy(item)">Buy this item</button>
+          <hr>
+        </li>
+      </ul>
+      
+    </div>
     <!-- interpolate all items -->
-    
     <!-- show only suitable items -->
-    
     <!-- show only items within a certain size -->
-    
     <!-- manage the handle "buy an item" -->
     
     <!-- show items as unavailable when their availability is 0 -->
@@ -29,5 +51,6 @@
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="ui/appbar/appbar.js"></script>
     <script src="subjects/directives/app.js"></script>
+    <script src="subjects/directives/items.controller.js"></script>
   </body>
 </html>

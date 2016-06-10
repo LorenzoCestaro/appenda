@@ -1,0 +1,10 @@
+.item {
+  margin: 10px 0px;
+  padding: 10px;
+  transition: all .3s ease-in-out;
+  
+}
+
+.item.unavailable {
+  background-color: rgba(256, 0, 0, .1);
+}
