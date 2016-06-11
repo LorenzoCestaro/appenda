@@ -17,7 +17,7 @@ angular.module('appenda').service('ContactsSrv', function () {
     contacts.push(formInput);
   };
   
-  this.get = function () {
+    this.get = function () {
     return contacts;
   };
   
