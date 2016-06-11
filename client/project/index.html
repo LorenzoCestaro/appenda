@@ -27,7 +27,7 @@
       
       <hr>
       
-      <form ng-submit="ContactsSrv.create(newContact)" novalidate autocomplete="off">
+      <form ng-submit="add(newContact)" novalidate autocomplete="off">
         <div style="margin-bottom:10px;">
           <label><strong>First Name</strong>
             <input ng-model="newContact.name" type="text" name="name" required />
@@ -65,11 +65,28 @@
       </form>
     </div>
     
+    <h2>Events</h2>
+    <div>
+      <div>
+        <ul>
+          <li>
+            <h5>Title</h5>
+              <p>Date -> Obbligatorio</p>
+              <p>Time -> Obbligatorio</p>
+              <p>Where</p>
+              <p>Notes</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
     <!-- scripts -->
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="project/app.js"></script>
     <script src="project/contact/contacts.controller.js"></script>
     <script src="project/contact/contacts.service.js"></script>
+    <!--<script src="project/contact/events.service.js"></script>
+    <script src="project/contact/events.controller.js"></script>-->
     
   </body>
 </html>
