@@ -17,7 +17,7 @@ angular.module('appenda').service('ContactsSrv', function () {
     contacts.push(formInput);
   };
   
-    this.get = function () {
+  this.get = function () {
     return contacts;
   };
   
@@ -33,7 +33,7 @@ angular.module('appenda').service('ContactsSrv', function () {
     contacts.forEach(function (singleContact) {
       if (id === singleContact.id) {
         singleContact = undefined;
-      };
+      }
     });
   };
   

@@ -7,66 +7,69 @@
     <title>Artoo Campus - Project</title>
   </head>
   
-  <body style="margin: 0;">
+  <body ng-app="appenda" style="margin: 0;">
     <!-- to be removed -->
-    <div style="align-items: center; display:flex; flex-direction: column; height: 100vh; justify-content: center;">
-      <h1 style="border: 2px dashed #dedede; color: red; padding: 50px;">AppEnda</h1>
-      <div>
-        <h2>Contacts</h2>
-        <ul>
-          <h5>First Name</h5>
-          <li>Alessandro</li>
+    <h1 style="border: 2px dashed #dedede; color: red; padding: 50px;">AppEnda</h1>
+    
+    <h2>Contacts</h2>
+    <div ng-controller="ContactsCtrl">
+      
+      <ul>
+        <li ng-repeat="contact in ContactsSrv.get()">
+          <p>Name: {{ contact.surname }} {{ contact.name}}</p>
+          <p>Phone: {{ contact.phone }}</p>
+          <p>Email: {{ contact.email }}</p>
+        </li>
+      </ul>
+      <hr>
+      
+      <button>Add New Contact</button>
+      
+      <hr>
+      
+      <form ng-submit="ContactsSrv.create(newContact)" novalidate autocomplete="off">
+        <div style="margin-bottom:10px;">
+          <label><strong>First Name</strong>
+            <input ng-model="newContact.name" type="text" name="name" required />
+          </label>
+        </div><!--/Fist Name-->
         
-          <h5>Last Name</h5>
-          <li>Covre</li>
-          
-          <h5>Phone</h5>
-          <li>3455942638</li>
-          
-          <h5>Email</h5>
-          <li>alecovre@alice.it</li>
-          
-          <h5>Image</h5>
-          <li>url</li>
-        </ul>
-        <hr>
+        <div style="margin-bottom:10px;">
+          <label><strong>Last Name</strong>
+            <input ng-model="newContact.surname" type="text" name="surname" required />
+          </label>
+        </div><!--/Last Name-->
         
-        <button>Add New Contact</button>
+        <div style="margin-bottom:10px;">
+          <label><strong>Add Phone</strong>
+            <input ng-model="newContact.phone" type="text" name="phone" required/>
+          </label>
+        </div><!--/Add Phone-->
         
-        <hr>
+        <div style="margin-bottom:10px;">
+          <label><strong>Add Email</strong>
+            <input ng-model="newContact.email" type="email" name="email"/>
+          </label>
+        </div><!--/Add EMail-->
         
-        <form>
-          <div style="margin-bottom:10px;">
-            <label><strong>First Name</strong>
-              <input type="text" name="name" required />
-            </label>
-          </div><!--/Fist Name-->
-          
-          <div style="margin-bottom:10px;">
-            <label><strong>Last Name</strong>
-              <input type="text" name="surname" required />
-            </label>
-          </div><!--/Last Name-->
-          
-          <div style="margin-bottom:10px;">
-            <label><strong>Add Phone</strong>
-              <input type="text" name="phone" required/>
-            </label>
-          </div><!--/Add Phone-->
-          
-          <div style="margin-bottom:10px;">
-            <label><strong>Add Email</strong>
-              <input type="email" name="email"/>
-            </label>
-          </div><!--/Add EMail-->
-          
-          <div  style="margin-bottom:10px;">
-            <label><strong>Add Photo</strong>
-              <input type="text" name="photo"/>
-            </label>
-          </div><!--/Add Photo-->
-        </form>
-      </div>
+        <div style="margin-bottom:10px;">
+          <label><strong>Add Photo</strong>
+            <input ng-model="newContact.img" type="text" name="photo"/>
+          </label>
+        </div><!--/Add Photo-->
+        
+        <div style="margin-bottom:10px;">
+            <button type="submit">Add New</button>
+          </label>
+        </div><!--/Add Photo-->
+      </form>
     </div>
+    
+    <!-- scripts -->
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="project/app.js"></script>
+    <script src="project/contact/contacts.controller.js"></script>
+    <script src="project/contact/contacts.service.js"></script>
+    
   </body>
 </html>
