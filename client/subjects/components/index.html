@@ -14,12 +14,28 @@
     
     <!-- create a component for the filter and order tools -->
     
-    <!-- create a component for the items properties -->
+    <!-- create a component to display items -->
+    <items></items>
+    
+    <!-- ng-transclude example -->
+    <artoo-frame>Contenuto 1</artoo-frame>
+    <artoo-frame>Contenuto 2</artoo-frame>
+    <artoo-frame>Contenuto 3</artoo-frame>
     
     <!-- create a component for the items and apply to the armors -->
+    
     
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="ui/appbar/appbar.js"></script>
     <script src="subjects/components/app.js"></script>
+    <!-- Items component -->
+    <script src="subjects/components/items/items.component.js"></script>
+    <script src="subjects/components/items/items.controller.js"></script>
+    <script src="subjects/components/items/items.service.js"></script>
+    <!-- Item component -->
+    <script src="subjects/components/item/item.component.js"></script>
+    <script src="subjects/components/item/item.controller.js"></script>
+    
+    <script src="subjects/components/artooframe/artoo-frame.component.js"></script>
   </body>
 </html>
