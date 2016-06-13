@@ -7,14 +7,16 @@ angular.module('appenda').service('EventsSrv', function () {
   var events = [{
     id: 0,
     title: 'Dentist',
-    datetime: new Date(), // temporary
+    date: new Date(), // temporary
+    time: new Date(),
     location: 'via Napoli, 4 - Castel San Giovanni (PC)',
     bindedContacts: [],
     notes: 'pulizia dei denti',
   }, {
     id: 1,
     title: 'Dinner',
-    datetime: new Date(), // temporary
+    date: new Date(1991, 00, 17), // temporary
+    time: new Date(), // temporary
     location: 'via Colle Ameno, 161 - Torrette di Ancona (AN)',
     bindedContacts: [],
     notes: '',
@@ -37,7 +39,7 @@ angular.module('appenda').service('EventsSrv', function () {
     events.forEach(function (singleEvent) {
       if (singleEvent.id === id) {
         return events.splice(events.indexOf(singleEvent), 1); 
-      }
+      };
     });
   };
   

@@ -1,16 +1,21 @@
+<div class="cont_event">
 <h2>Events</h2>
+<label>
+  Search: 
+  <input type="text" ng-model="search" placeholder="Find an event"/>
+</label>
 <hr>
 
-<div ng-repeat="event in EventsCtrl.EventsSrv.get()">
+<div ng-repeat="event in EventsCtrl.EventsSrv.get() | filterTitle:search">
   <div>Title: {{event.title}}</div>
-  <div>Date: {{event.datetime}}</div>
-  <!--<div>Time -> Obbligatorio</div>-->
+  <div>Date: {{event.date | date:"dd/MM/yyyy"}}</div>
+  <div>Time: {{event.time | date:"hh:mm"}}</div>
   <div>Where: {{event.location}}</div>
   <div>Notes: {{event.notes}}</div>
   <button ng-click="EventsCtrl.EventsSrv.delete(event.id)">Delete event</button>
   <hr>
 </div>
-<hr>
+
 <form ng-submit="EventsCtrl.EventsSrv.create(newEvent)" novalidate autocomplete="off">
   
   <div style="margin-bottom:10px;"> 
@@ -21,13 +26,19 @@
   
     <div style="margin-bottom:10px;">
     <label><strong>Date</strong>
-      <input ng-model="newEvent.date" type="text" name="datetime" placeholder="dd/mm/yyyy - hh/mm" required />
+      <input ng-model="newEvent.date" type="text" name="datetime" placeholder="dd/mm/yyyy" required />
     </label>
   </div><!--/date-->
   
   <div style="margin-bottom:10px;">
+    <label><strong>Time</strong>
+      <input ng-model="newEvent.time" type="text" name="datetime" placeholder="hh/mm" required />
+    </label>
+  </div><!--/time-->
+  
+  <div style="margin-bottom:10px;">
     <label><strong>Notes</strong>
-      <input ng-model="newEvent.notes" type="text" name="notes" placeholder="notes" required />
+      <textarea ng-model="newEvent.notes" rows="4" cols="17" name="notes" placeholder="notes"></textarea>
     </label>
   </div><!--/notes-->
   
@@ -36,3 +47,4 @@
   </div>
 </form>
 <hr>
+</div>
