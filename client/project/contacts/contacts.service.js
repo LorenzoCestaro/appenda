@@ -10,7 +10,7 @@ angular.module('appenda').service('ContactsSrv', function () {
     surname: 'Peveri',
     phone: '3333333333',
     email: 'silvia.peveri@gmail.com',
-    img: 'http://placehold.it/20x20',
+    img: 'http://placehold.it/40x40',
   },];
   
   // create method to insert new contact in contacts list:

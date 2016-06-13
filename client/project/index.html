@@ -11,93 +11,21 @@
     <!-- to be removed -->
     <h1 style="border: 2px dashed #dedede; color: red; padding: 50px;">AppEnda</h1>
     
-    <h2>Contacts</h2>
-    <div ng-controller="ContactsCtrl">
-      
-      <ul>
-        <li ng-repeat="contact in ContactsSrv.get()">
-          <p>Name: {{ contact.surname }} {{ contact.name}}</p>
-          <p>Phone: {{ contact.phone }}</p>
-          <p>Email: {{ contact.email }}</p>
-        </li>
-      </ul>
-      <hr>
-      
-      <button>Add New Contact</button>
-      
-      <hr>
-      
-      <form ng-submit="add(newContact)" novalidate autocomplete="off">
-        <div style="margin-bottom:10px;">
-          <label><strong>First Name</strong>
-            <input ng-model="newContact.name" type="text" name="name" required />
-          </label>
-        </div><!--/Fist Name-->
-        
-        <div style="margin-bottom:10px;">
-          <label><strong>Last Name</strong>
-            <input ng-model="newContact.surname" type="text" name="surname" required />
-          </label>
-        </div><!--/Last Name-->
-        
-        <div style="margin-bottom:10px;">
-          <label><strong>Add Phone</strong>
-            <input ng-model="newContact.phone" type="text" name="phone" required/>
-          </label>
-        </div><!--/Add Phone-->
-        
-        <div style="margin-bottom:10px;">
-          <label><strong>Add Email</strong>
-            <input ng-model="newContact.email" type="email" name="email"/>
-          </label>
-        </div><!--/Add EMail-->
-        
-        <div style="margin-bottom:10px;">
-          <label><strong>Add Photo</strong>
-            <input ng-model="newContact.img" type="text" name="photo"/>
-          </label>
-        </div><!--/Add Photo-->
-        
-        <div style="margin-bottom:10px;">
-            <button type="submit">Add New</button>
-          </label>
-        </div><!--/Add Photo-->
-      </form>
-    </div>
+    <contacts></contacts>
     
     <h2>Events</h2>
-    <div ng-controller="EventsCtrl">
-      <ul>
-        <li>
-          <h5>Title</h5>
-            <p>Date -> Obbligatorio</p>
-            <p>Time -> Obbligatorio</p>
-            <p>Where</p>
-            <p>Notes</p>
-        </li>
-      </ul>
-      <form ng-submit="" novalidate autocomplete="off">
-        <div style="margin-bottom:10px;">
-          <label><strong>Title</strong>
-            <input ng-model="" type="text" name="title" required />
-          </label>
-        </div><!--/title-->
-        
-        <div style="margin-bottom:10px;">
-          <label><strong>Date</strong>
-            <input ng-model="" type="text" name="datetime" placeholder="dd/mm/yyyy - hh/mm" required />
-          </label>
-        </div><!--/date-->
-      </form>
-    </div><!--/EventsCtrl-->
+    <events></events>
+    
     
     <!-- scripts -->
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="project/app.js"></script>
-    <script src="project/contact/contacts.controller.js"></script>
-    <script src="project/contact/contacts.service.js"></script>
-    <script src="project/contact/events.service.js"></script>
-    <script src="project/contact/events.controller.js"></script>
+    <script src="project/contacts/contacts.controller.js"></script>
+    <script src="project/contacts/contacts.service.js"></script>
+    <script src="project/contacts/contacts.component.js"></script>
+    <script src="project/events/events.component.js"></script>
+    <script src="project/events/events.controller.js"></script>
+    <script src="project/events/events.service.js"></script>
     
   </body>
 </html>

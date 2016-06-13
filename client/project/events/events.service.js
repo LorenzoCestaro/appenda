@@ -1,7 +1,8 @@
 angular.module('appenda').service('EventsSrv', function () {
   
   // Define the highest id for the events object
-  var maxId = 1;
+  
+  var maxId = 2;
   
   var events = [{
     id: 0,
@@ -10,18 +11,25 @@ angular.module('appenda').service('EventsSrv', function () {
     location: 'via Napoli, 4 - Castel San Giovanni (PC)',
     bindedContacts: [],
     notes: 'pulizia dei denti',
+  }, {
+    id: 1,
+    title: 'Dinner',
+    datetime: new Date(), // temporary
+    location: 'via Colle Ameno, 161 - Torrette di Ancona (AN)',
+    bindedContacts: [],
+    notes: '',
   },];
   
-  // Get method to access event list
-  this.get = function () {
+  // // Get method to access event list
+  this.get =  function () {
     return events;
   };
   
-  // Create a method to insert new events in event list
-  this.create = function (newEvent) {
-    newEvent.id = maxId++;
-    events.push(angular.copy(newEvent));
-  };
+  // // Create a method to insert new events in event list
+  // this.create = function (newEvent) {
+  //   newEvent.id = maxId++;
+  //   events.push(angular.copy(newEvent));
+  // };
   
   // Delete method to remove an event from the list
   // this.delete = function (id) {

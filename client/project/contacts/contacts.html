@@ -1,0 +1,53 @@
+<h2>Contacts</h2>
+
+<div ng-repeat="contact in ContactsCtrl.ContactsSrv.get()">
+  <hr>
+  <img src="{{contact.img}}" alt="{{contact.name}}" />
+  <div>Name: {{contact.surname}} {{contact.name}}</div>
+  <div>Phone: {{contact.phone}}</div>
+  <div>Email: {{contact.email}}</div>
+  <button ng-click="ContactsCtrl.ContactsSrv.delete(contact.id)">Delete contact</button>
+</div>
+
+<hr>
+<form ng-submit="ContactsCtrl.add(newContact)" novalidate autocomplete="off">
+  <div style="margin-bottom:10px;">
+    <label><strong>First Name</strong>
+            <input ng-model="newContact.name" type="text" name="name" required />
+          </label>
+  </div>
+  <!--/Fist Name-->
+
+  <div style="margin-bottom:10px;">
+    <label><strong>Last Name</strong>
+            <input ng-model="newContact.surname" type="text" name="surname" required />
+          </label>
+  </div>
+  <!--/Last Name-->
+
+  <div style="margin-bottom:10px;">
+    <label><strong>Add Phone</strong>
+            <input ng-model="newContact.phone" type="text" name="phone" required/>
+          </label>
+  </div>
+  <!--/Add Phone-->
+
+  <div style="margin-bottom:10px;">
+    <label><strong>Add Email</strong>
+            <input ng-model="newContact.email" type="email" name="email"/>
+          </label>
+  </div>
+  <!--/Add EMail-->
+
+  <div style="margin-bottom:10px;">
+    <label><strong>Add Photo</strong>
+            <input ng-model="newContact.img" type="text" name="photo"/>
+          </label>
+  </div>
+  <!--/Add Photo-->
+
+  <div style="margin-bottom:10px;">
+    <button type="submit">Add New</button>
+    </label>
+  </div>
+</form>
