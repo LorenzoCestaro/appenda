@@ -66,27 +66,38 @@
     </div>
     
     <h2>Events</h2>
-    <div>
-      <div>
-        <ul>
-          <li>
-            <h5>Title</h5>
-              <p>Date -> Obbligatorio</p>
-              <p>Time -> Obbligatorio</p>
-              <p>Where</p>
-              <p>Notes</p>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <div ng-controller="EventsCtrl">
+      <ul>
+        <li>
+          <h5>Title</h5>
+            <p>Date -> Obbligatorio</p>
+            <p>Time -> Obbligatorio</p>
+            <p>Where</p>
+            <p>Notes</p>
+        </li>
+      </ul>
+      <form ng-submit="" novalidate autocomplete="off">
+        <div style="margin-bottom:10px;">
+          <label><strong>Title</strong>
+            <input ng-model="" type="text" name="title" required />
+          </label>
+        </div><!--/title-->
+        
+        <div style="margin-bottom:10px;">
+          <label><strong>Date</strong>
+            <input ng-model="" type="text" name="datetime" placeholder="dd/mm/yyyy - hh/mm" required />
+          </label>
+        </div><!--/date-->
+      </form>
+    </div><!--/EventsCtrl-->
     
     <!-- scripts -->
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="project/app.js"></script>
     <script src="project/contact/contacts.controller.js"></script>
     <script src="project/contact/contacts.service.js"></script>
-    <!--<script src="project/contact/events.service.js"></script>
-    <script src="project/contact/events.controller.js"></script>-->
+    <script src="project/contact/events.service.js"></script>
+    <script src="project/contact/events.controller.js"></script>
     
   </body>
 </html>
