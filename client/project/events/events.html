@@ -1,22 +1,35 @@
+<h2>Events</h2>
+<hr>
+
 <div ng-repeat="event in EventsCtrl.EventsSrv.get()">
   <div>Title: {{event.title}}</div>
   <div>Date: {{event.datetime}}</div>
   <!--<div>Time -> Obbligatorio</div>-->
   <div>Where: {{event.location}}</div>
   <div>Notes: {{event.notes}}</div>
+  <button ng-click="EventsCtrl.EventsSrv.delete(event.id)">Delete event</button>
+  <hr>
 </div>
 <hr>
-<form ng-submit="" novalidate autocomplete="off">
-  <div style="margin-bottom:10px;">
+<form ng-submit="EventsCtrl.EventsSrv.create(newEvent)" novalidate autocomplete="off">
+  
+  <div style="margin-bottom:10px;"> 
     <label><strong>Title</strong>
-      <input ng-model="EventCtrl.event.title" type="text" name="title" required />
+      <input ng-model="newEvent.title" type="text" name="title" required />
     </label>
   </div><!--/title-->
+  
     <div style="margin-bottom:10px;">
     <label><strong>Date</strong>
-      <input ng-model="EventCtrl.event.date" type="text" name="datetime" placeholder="dd/mm/yyyy - hh/mm" required />
+      <input ng-model="newEvent.date" type="text" name="datetime" placeholder="dd/mm/yyyy - hh/mm" required />
     </label>
   </div><!--/date-->
+  
+  <div style="margin-bottom:10px;">
+    <label><strong>Notes</strong>
+      <input ng-model="newEvent.notes" type="text" name="notes" placeholder="notes" required />
+    </label>
+  </div><!--/notes-->
   
   <div style="margin-bottom:10px;">
     <button type="submit">Add Event</button>

@@ -20,25 +20,26 @@ angular.module('appenda').service('EventsSrv', function () {
     notes: '',
   },];
   
-  // // Get method to access event list
+  // Get method to access event list
   this.get =  function () {
     return events;
   };
   
-  // // Create a method to insert new events in event list
-  // this.create = function (newEvent) {
-  //   newEvent.id = maxId++;
-  //   events.push(angular.copy(newEvent));
-  // };
+  // Create a method to insert new events in event list
+  this.create = function (newEvent) {
+     newEvent.id = maxId++;
+     events.push(angular.copy(newEvent));
+     
+  };
   
   // Delete method to remove an event from the list
-  // this.delete = function (id) {
-  //   events.forEach(function (singleEvent) {
-  //     if (singleEvent.id === id) {
-  //       singleEvent = undefined; 
-  //     }
-  //   });
-  // };
+  this.delete = function (id) {
+    events.forEach(function (singleEvent) {
+      if (singleEvent.id === id) {
+        return events.splice(events.indexOf(singleEvent), 1); 
+      }
+    });
+  };
   
   // this.update = function (newEvent) {
   //   events.forEach(function (singleEvent) {
