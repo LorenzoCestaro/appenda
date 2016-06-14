@@ -1,7 +1,7 @@
 angular.module('appenda').service('ContactsSrv', function () {
   
   // Define a maximum id highest id for the contacts objects
-  var maxId = 2;
+  var maxId = 5;
   
   // Initialize contacts list
   var contacts = [{
@@ -32,11 +32,20 @@ angular.module('appenda').service('ContactsSrv', function () {
     phone: '3333333333',
     email: 'leonardo.leo@gmail.com',
     img: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAW0AAAAJDNjNzgyOGVlLWZiOTEtNGU4OC04NTY5LTg3YmZlZDY3N2Y2MA.jpg',
+  },  {
+    id: 4,
+    name: 'Erik',
+    surname: 'Szalai',
+    phone: '3333333333',
+    email: 'szalaierik576@gmail.com',
+    img: 'http://i.imgur.com/efVVwyK.jpg',
   }];
   
   // create method to insert new contact in contacts list:
   // gets the compiled form fields converted in an object as input
   this.create = function (formInput) {
+    var defImg = 'http://www.golenbock.com/wp-content/uploads/2015/01/placeholder-user-400x400.png';
+    formInput.img = formInput.img || defImg;
     formInput.id = maxId++;
     contacts.push(angular.copy(formInput));
   };

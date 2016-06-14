@@ -1,55 +1,84 @@
-<label>
-  Search: 
-  <input type="text" ng-model="search" placeholder="Find a contact"/>
-</label>
-
-<div ng-repeat="contact in ContactsCtrl.ContactsSrv.get() | filterByNameSurname:search">
-  <hr>
-  <img src="{{contact.img}}" alt="{{contact.name}}" />
-  <div>Name: <span class="contact-info"> {{contact.surname}} {{contact.name}}</span></div>
-  <div>Phone:<span class="contact-info"> {{contact.phone}} </span></div>
-  <div>Email:<span class="contact-info"> {{contact.email}} </span></div>
-  <button ng-click="ContactsCtrl.ContactsSrv.delete(contact.id)">Delete contact</button>
+<div class="md-display-1">Contacts</div>
+<div layout-margin layout-padding>
+  <md-input-container class="md-block" flex>
+    <label><i class="material-icons">search</i> Find a contact</label>
+    <input type="text" ng-model="search"/>
+  </md-input-container>
 </div>
 
-<hr>
-<form ng-submit="ContactsCtrl.add(newContact)" novalidate autocomplete="off">
-  <div style="margin-bottom:10px;">
-    <label>First Name
-      <input ng-model="newContact.name" type="text" name="name" required placeholder="Insert your Name" />
-    </label>
+<md-list-item class="md-3-line" layout-align="space-between center" ng-repeat="contact in ContactsCtrl.ContactsSrv.get() | filterByNameSurname:search">
+  
+  <img ng-src="{{contact.img}}?{{$index}}" class="md-avatar" alt="{{contact.name}}" />
+  <div class="md-list-item-text" layout="column" >
+    <h3><strong>{{ contact.surname }} {{ contact.name }}</strong></h3>
+    <h4>{{ contact.phone }}</h4>
+    <p>{{ contact.email }}</p>
   </div>
-  <!--/Fist Name-->
+  
+  <button class="md-button md-raised md-warn" ng-click="ContactsCtrl.ContactsSrv.delete(contact.id)" >delete</button>
+  
+<!--    <button class="md-button md-raised md-accent flex" ng-click="ContactsCtrl.ContactsSrv.delete(contact.id)">Delete contact</button>
+--> 
+  <md-divider ng-if="!$last"></md-divider>
+</md-list-item>
 
-  <div style="margin-bottom:10px;">
-    <label>Last Name
-      <input ng-model="newContact.surname" type="text" name="surname" required placeholder="Insert your Last Name" />
-    </label>
-  </div>
-  <!--/Last Name-->
+<md-divider></md-divider>
 
-  <div style="margin-bottom:10px;">
-    <label>Add Phone
-      <input ng-model="newContact.phone" type="text" name="phone" required placeholder="Insert your Phone"/>
-    </label>
+<form name='contactForm' ng-submit="ContactsCtrl.add(ContactsCtrl.newContact, contactForm)" novalidate autocomplete="off" layout-padding>
+  
+  <div layout="column" layout-padding layout-margin>
+    
+    <div layout="row" layout-align="space-between center">
+      <md-input-container class="md-icon-float md-block" flex="45">
+        <label><i class="material-icons">account_circle</i> Name</label>
+        <input name="name" ng-model="ContactsCtrl.newContact.name" type="text" ng-required="true">
+        
+        <div ng-messages="contactForm.name.$error" role="alert">
+          <div ng-message="required" class="my-message">You must insert a contact name</div>
+        </div>
+      </md-input-container>
+      
+      <md-input-container class="md-icon-float md-block" flex="45">
+        <label><i class="material-icons">account_circle</i> Surname</label>
+        <input name="surname" ng-model="ContactsCtrl.newContact.surname" type="text" ng-required="true">
+        
+        <div ng-messages="contactForm.surname.$error" md-auto-hide="true" role="alert">
+          <div ng-message="required" class="my-message">You must insert a contact surname</div>
+        </div>
+      </md-input-container>
+    </div>
+    
+    <md-input-container md-no-float class="md-block">
+      <label><i class="material-icons">phone</i> Phone</label>
+      <input name="phone" ng-model="ContactsCtrl.newContact.phone" ng-pattern="/^[0-9]{9,10}$/" ng-required="true">
+      
+      <div ng-messages="contactForm.phone.$error" role="alert">
+          <div ng-message-exp="['required', 'pattern']" class="my-message">You must insert a ten digit number</div>
+        </div>
+    </md-input-container>
+    
+    <md-input-container class="md-block">
+      <label><i class="material-icons">email</i> Email</label>
+      <input name="email" ng-pattern="/^.+@.+\..+$/" ng-model="ContactsCtrl.newContact.email" type="email">
+      
+      <div ng-messages="contactForm.email.$error" role="alert">
+        <div ng-message="pattern" class="my-message">You must insert a valid email.</div>
+      </div>
+    </md-input-container>
+    
+    <md-input-container class="md-block">
+      <label><i class="material-icons">image</i> Image Url</label>
+      <input name="img" ng-model="ContactsCtrl.newContact.img" type="url">
+      
+      <div ng-messages="ContactsCtrl.contactForm.img.$error" role="alert">
+        <div ng-message="url" class="my-message">You must insert a valid url</div>
+      </div>
+    </md-input-container>
+    
+    <button type="submit" class="md-button md-raised md-accent" ng-disabled="contactForm.$invalid" flex>Save</button>
+  
   </div>
-  <!--/Add Phone-->
-
-  <div style="margin-bottom:10px;">
-    <label>Add Email
-      <input ng-model="newContact.email" type="email" name="email" placeholder="Insert your e-mail"/>
-    </label>
-  </div>
-  <!--/Add EMail-->
-
-  <div style="margin-bottom:10px;">
-    <label>Add Photo
-      <input ng-model="newContact.img" type="text" name="photo" placeholder="Insert the URL of your image"/>
-    </label>
-  </div>
-  <!--/Add Photo-->
-
-  <div style="margin-bottom:10px;">
-    <button type="submit">Add Contact</button>
-  </div>
+    
 </form>
+
+<md-divider></md-divider>

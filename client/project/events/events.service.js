@@ -43,6 +43,8 @@ angular.module('appenda').service('EventsSrv', function () {
     });
   };
   
+  /**/
+  
   // this.update = function (newEvent) {
   //   events.forEach(function (singleEvent) {
   //     if (singleEvent.id === newEvent.id) {

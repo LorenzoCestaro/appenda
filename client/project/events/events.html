@@ -1,50 +1,76 @@
-<div class="cont_event">
-<h2>Events</h2>
-<label>
-  Search: 
-  <input type="text" ng-model="search" placeholder="Find an event"/>
-</label>
-<hr>
+<div class="md-display-1">Events</div>
+<div layout-margin layout-padding>
+  <md-input-container class="md-block" flex>
+    <label><i class="material-icons">search</i> Find an event</label>
+    <input type="text" ng-model="search"/>
+  </md-input-container>
+</div>
 
-<div ng-repeat="event in EventsCtrl.EventsSrv.get() | filterTitle:search">
+<!--<div ng-repeat="event in EventsCtrl.EventsSrv.get() | filterTitle:search">
   <div>Title: {{event.title}}</div>
   <div>Date: {{event.date | date:"dd/MM/yyyy"}}</div>
   <div>Time: {{event.time | date:"hh:mm"}}</div>
-  <div>Where: {{event.location}}</div>
+  <div>Location: {{event.location}}</div>
   <div>Notes: {{event.notes}}</div>
   <button ng-click="EventsCtrl.EventsSrv.delete(event.id)">Delete event</button>
   <hr>
+</div>-->
+
+<div>
+  <md-list-item class="md-3-line" class="md-3-line" ng-repeat="event in EventsCtrl.EventsSrv.get() | filterTitle:search">
+    <div class="md-list-item-text" layout="column">
+      <h3><strong>{{event.title}}</strong></h3>
+      <h4>{{event.date | date:"dd/MM/yyyy"}} - {{event.time | date:"hh:mm"}}</h4>
+      <p>{{event.location}}</p>
+      <!--<p>{{event.notes}}</p>-->
+      <!--<button class="md-button md-raised md-accent flex" -->
+      <!--ng-click="EventsCtrl.openOffscreen(EventsCtrl.detailsFormat([{val: event.location}, {val: event.notes}]))">More Info</button>-->
+      
+      <i class="material-icons" ng-click="EventsCtrl.EventsSrv.delete(event.id)" style="cursor:pointer; color:grey; ! important">delete</i>
+      <md-divider ng-if="!$last"></md-divider>
+    </div>
+  </md-list-item>
+</div>
 </div>
 
-<form ng-submit="EventsCtrl.EventsSrv.create(newEvent)" novalidate autocomplete="off">
+<form name='eventForm' ng-submit="EventsCtrl.EventsSrv.create(newEvent)" novalidate autocomplete="off" layout-padding>
   
-  <div style="margin-bottom:10px;"> 
-    <label><strong>Title</strong>
-      <input ng-model="newEvent.title" type="text" name="title" required />
-    </label>
-  </div><!--/title-->
+  <div layout="column" layout-padding layout-margin>
+    
+    <div layout="row" layout-align="space-between center">
+      <md-input-container class="md-icon-float md-block" flex>
+          <label><i class="material-icons">event_note</i> Event name</label>
+          <input name="title" ng-model="newEvent.title" type="text" ng-required="true">
+          
+          <div ng-messages="eventForm.name.$error" role="alert">
+            <div ng-message="required" class="my-message">You must insert a name for your event</div>
+          </div>
+      </md-input-container>
+      
+      <md-datepicker ng-model="myDate" 
+                     ng-model="newEvent.date"
+                     md-placeholder="Date"
+                     md-min-date="EventsCtrl.minDate" flex="20">
+      </md-datepicker>
+    </div>
+    
+    <md-input-container class="md-icon-float md-block" flex>
+      <label><i class="material-icons">access_time</i> Time</label>
+      <input name="time" ng-model="newEvent.time" type="time" step="1800" ng-required="true">
+      
+      <div ng-messages="eventForm.time.$error" role="alert">
+        <div ng-message="time" class="my-message">You must insert a valid time format</div>
+        <div ng-message="required" class="my-message">You must insert a time for your event</div>
+      </div>
+    </md-input-container>
+    
+    <md-input-container class="md-icon-float md-block" flex>
+      <label><i class="material-icons">note_add</i> Notes</label>
+      <textarea rows="5" name="time" ng-model="newEvent.notes"></textarea>
+    </md-input-container>
+    
+    <button type="submit" class="md-button md-raised md-accent" ng-disabled="eventForm.$invalid" flex>Save</button>
   
-    <div style="margin-bottom:10px;">
-    <label><strong>Date</strong>
-      <input ng-model="newEvent.date" type="text" name="datetime" placeholder="dd/mm/yyyy" required />
-    </label>
-  </div><!--/date-->
-  
-  <div style="margin-bottom:10px;">
-    <label><strong>Time</strong>
-      <input ng-model="newEvent.time" type="text" name="datetime" placeholder="hh/mm" required />
-    </label>
-  </div><!--/time-->
-  
-  <div style="margin-bottom:10px;">
-    <label><strong>Notes</strong>
-      <textarea ng-model="newEvent.notes" rows="4" cols="17" name="notes" placeholder="notes"></textarea>
-    </label>
-  </div><!--/notes-->
-  
-  <div style="margin-bottom:10px;">
-    <button type="submit">Add Event</button>
   </div>
+    
 </form>
-<hr>
-</div>
