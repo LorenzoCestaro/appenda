@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
     <title>Artoo Campus - Angular Material</title>
+    <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="ui/appbar/appbar.css">
     <!-- load material css -->
@@ -14,20 +15,81 @@
     <appbar></appbar>
     
     <!-- check the typography -->
+    <div class="md-display-2">md-display-2</div>
+    
+    <div class="md-title">I'm a title</div>
+    <div class="md-subhead">I'm a subhead</div>
+    
+    <md-button class="md-button md-raised md-primary">Button</md-button>
+    <md-button class="md-button md-raised md-accent">Button</md-button>
+    <md-button class="md-button md-raised md-warn">Button</md-button>
+    <md-divider></md-divider>
     
     <!-- setup a theme -->
-    
     <!-- practice the layout -->
+    <div layout="row" layout-margin layout-padding layout-wrap>
+      <div style="background: #FFCCBC" flex="50" flex-order="4">child #1</div>
+      <div style="background: #FF8A65" flex="50" flex-order="3">child #2</div>
+      <div style="background: #FF5722" flex="50" flex-order="2">child #3</div>
+      <div style="background: #E64A19" flex="50" flex-order="1">child #4</div>
+    </div>
+    <md-divider></md-divider>
     
     <!-- play with some directives & services -->
+      
+    <md-content ng-controller="MaterialCtrl" layout-margin layout-padding>
+      <md-datepicker ng-model="myDate" 
+                     md-placeholder="Enter date"
+                     md-min-date="minDate"
+                     md-date-filter="filterPredicate">
+      </md-datepicker>
+      
+      <form name="form" autocomplete="off" novalidate layout-margin layout-padding>
+        
+        <md-input-container class="md-block" flex>
+          <label for="progressControl">Progress bar value: </label>
+          <input name="progressControl" type="number" min="0" max="100" ng-model="determinateValue">
+          <md-progress-linear md-mode="determinate" value="{{determinateValue}}"></md-progress-linear>
+        </md-input-container>
+        
+        
+        <div layout="column" >
+          <md-input-container class="md-block" flex>
+            <label>Name</label>
+            <input name="name" ng-model="user.name" md-maxlength="8" required>
+            <div ng-messages="form.name.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">You must insert your name.</div>
+              <div ng-message="md-maxlength" class="my-message">Your name must contain 8 characters max.</div>
+            </div>
+          </md-input-container>
+          
+          <md-input-container class="md-block" flex>
+            <label>Email</label>
+            <input name="email" ng-pattern="/^.+@.+\..+$/" ng-model="user.email" type="email" required>
+            
+            <div ng-messages="form.email.$error" role="alert">
+              <div ng-message-exp="['required', 'pattern']" class="my-message">You must insert a valid email.</div>
+            </div>  
+          </md-input-container>
+          
+          <button class="md-button md-raised md-accent">Save</button>
+        </div>
+        
+      </form>
+    
+    </md-content>
     
     <script src="node_modules/angular/angular.min.js"></script>
     <!-- load aria -->
+    <script src="node_modules/angular-aria/angular-aria.min.js"></script>
     <!-- load animation -->
+    <script src="node_modules/angular-animate/angular-animate.min.js"></script>
     <!-- load messages -->
+    <script src="node_modules/angular-messages/angular-messages.min.js"></script>
     <!-- load material -->
-    
+    <script src="node_modules/angular-material/angular-material.min.js"></script>
     <script src="ui/appbar/appbar.js"></script>
     <script src="subjects/material/app.js"></script>
+    <script src="subjects/material/material.controller.js"></script>
   </body>
 </html>

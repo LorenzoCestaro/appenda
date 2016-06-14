@@ -19,14 +19,14 @@ angular.module('appenda').service('ContactsSrv', function () {
     email: 'alessandro.boiascheo@gmail.com',
     img: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAIrAAAAJDM3MTlhYjgwLWY0NWMtNDYwMS1iYzk5LWRiZGRhM2VhMWYyOA.jpg',
   }, {
-    id: 1,
+    id: 2,
     name: 'Mattia',
     surname: 'De Luca',
     phone: '3333333333',
     email: 'io.sono.mattia.de.luca.e.anche.filippo@gmail.com',
     img: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/4/005/03d/3b9/2843334.jpg',
   }, {
-    id: 1,
+    id: 3,
     name: 'Leorenzo',
     surname: 'Cestaro',
     phone: '3333333333',
