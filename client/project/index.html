@@ -11,16 +11,13 @@
   </head>
   
   <body ng-app="appenda">
-    <!-- to be removed -->
-    <div id="logo"></div>
-    
-    <contacts></contacts>
-    <div class="clear"></div>
-    <events></events>
+    <div ui-view></div>
     
     
     <!-- scripts -->
     <script src="node_modules/angular/angular.min.js"></script>
+    <!-- load ui-router -->
+    <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
     <!-- load aria -->
     <script src="node_modules/angular-aria/angular-aria.min.js"></script>
     <!-- load animation -->
@@ -35,6 +32,8 @@
     <script src="project/contacts/contacts.service.js"></script>
     <script src="project/contacts/contacts.component.js"></script>
     <script src="project/contacts/contacts.filter.js"></script>
+    <script src="project/add-contact/add-contact.controller.js"></script>
+    <script src="project/add-event/add-event.controller.js"></script>
     <script src="project/events/events.component.js"></script>
     <script src="project/events/events.controller.js"></script>
     <script src="project/events/events.service.js"></script>

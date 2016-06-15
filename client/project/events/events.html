@@ -6,71 +6,26 @@
   </md-input-container>
 </div>
 
-<!--<div ng-repeat="event in EventsCtrl.EventsSrv.get() | filterTitle:search">
-  <div>Title: {{event.title}}</div>
-  <div>Date: {{event.date | date:"dd/MM/yyyy"}}</div>
-  <div>Time: {{event.time | date:"hh:mm"}}</div>
-  <div>Location: {{event.location}}</div>
-  <div>Notes: {{event.notes}}</div>
-  <button ng-click="EventsCtrl.EventsSrv.delete(event.id)">Delete event</button>
-  <hr>
-</div>-->
-
-<div>
-  <md-list-item class="md-3-line" class="md-3-line" ng-repeat="event in EventsCtrl.EventsSrv.get() | filterTitle:search">
-    <div class="md-list-item-text" layout="column">
-      <h3><strong>{{event.title}}</strong></h3>
-      <h4>{{event.date | date:"dd/MM/yyyy"}} - {{event.time | date:"hh:mm"}}</h4>
-      <p>{{event.location}}</p>
-      <!--<p>{{event.notes}}</p>-->
-      <!--<button class="md-button md-raised md-accent flex" -->
-      <!--ng-click="EventsCtrl.openOffscreen(EventsCtrl.detailsFormat([{val: event.location}, {val: event.notes}]))">More Info</button>-->
-      
-      <i class="material-icons" ng-click="EventsCtrl.EventsSrv.delete(event.id)" style="cursor:pointer; color:grey; ! important">delete</i>
-      <md-divider ng-if="!$last"></md-divider>
-    </div>
-  </md-list-item>
-</div>
-</div>
-
-<form name='eventForm' ng-submit="EventsCtrl.EventsSrv.create(newEvent)" novalidate autocomplete="off" layout-padding>
-  
-  <div layout="column" layout-padding layout-margin>
-    
-    <div layout="row" layout-align="space-between center">
-      <md-input-container class="md-icon-float md-block" flex>
-          <label><i class="material-icons">event_note</i> Event name</label>
-          <input name="title" ng-model="newEvent.title" type="text" ng-required="true">
-          
-          <div ng-messages="eventForm.name.$error" role="alert">
-            <div ng-message="required" class="my-message">You must insert a name for your event</div>
-          </div>
-      </md-input-container>
-      
-      <md-datepicker ng-model="myDate" 
-                     ng-model="newEvent.date"
-                     md-placeholder="Date"
-                     md-min-date="EventsCtrl.minDate" flex="20">
-      </md-datepicker>
-    </div>
-    
-    <md-input-container class="md-icon-float md-block" flex>
-      <label><i class="material-icons">access_time</i> Time</label>
-      <input name="time" ng-model="newEvent.time" type="time" step="1800" ng-required="true">
-      
-      <div ng-messages="eventForm.time.$error" role="alert">
-        <div ng-message="time" class="my-message">You must insert a valid time format</div>
-        <div ng-message="required" class="my-message">You must insert a time for your event</div>
+<md-content>
+  <md-list flex layout-margin>
+    <md-list-item md-whiteframe="3"  class="md-3-line" ng-click="null" ng-repeat="event in EventsCtrl.EventsSrv.get() | filterTitle:search">
+      <div class="md-list-item-text" layout="column">
+        <h3><strong>{{event.title}}</strong></h3>
+        <h4>{{event.date | date:"dd/MM/yyyy"}} - {{event.time | date:"hh:mm"}}</h4>
+        <p>{{event.location}}</p>
+        <!--<p>{{event.notes}}</p>-->
+        <!--<button class="md-button md-raised md-accent flex" -->
+        <!--ng-click="EventsCtrl.openOffscreen(EventsCtrl.detailsFormat([{val: event.location}, {val: event.notes}]))">More Info</button>-->
+        
+        <md-button class="md-raised md-secondary" ng-click="EventsCtrl.EventsSrv.delete(event.id)" >delete</md-button>
+       
       </div>
-    </md-input-container>
-    
-    <md-input-container class="md-icon-float md-block" flex>
-      <label><i class="material-icons">note_add</i> Notes</label>
-      <textarea rows="5" name="time" ng-model="newEvent.notes"></textarea>
-    </md-input-container>
-    
-    <button type="submit" class="md-button md-raised md-accent" ng-disabled="eventForm.$invalid" flex>Save</button>
-  
-  </div>
-    
-</form>
+    </md-list-item>
+  </md-list>
+</md-content>
+
+<md-content layout="row" layout-margin layout-padding>
+  <md-button class="md-raised md-primary" ui-sref="add-event" flex>Add new Event</md-button>
+</md-content>
+
+

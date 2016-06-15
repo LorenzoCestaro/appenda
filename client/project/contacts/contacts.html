@@ -7,8 +7,8 @@
 </div>
 
 <md-content>
-  <md-list flex layout-margin layout-padding>
-    <md-list-item class="md-3-line md-whiteframe-2dp" ng-repeat="contact in ContactsCtrl.ContactsSrv.get() | filterByNameSurname:search">
+  <md-list flex layout-margin>
+    <md-list-item  md-whiteframe="3" class="md-3-line" ng-click="null" ng-repeat="contact in ContactsCtrl.ContactsSrv.get() | filterByNameSurname:search">
       <img ng-src="{{contact.img}}?{{$index}}" class="md-avatar" alt="{{contact.name}}" />
       <div class="md-list-item-text" layout="column">
         <h3><strong>{{contact.surname}} {{contact.name}}</strong></h3>
@@ -22,8 +22,11 @@
     </md-list-item>
   </md-list>
 </md-content>
+<md-content layout="row" layout-margin layout-padding>
+  <md-button class="md-raised md-primary" ui-sref="add-contact" flex>Add new contact</md-button>
+</md-content>
 
-<md-divider></md-divider>
+<!--<md-divider></md-divider>
 
 <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
   <md-whiteframe class="md-whiteframe-5dp" flex="100" layout="column" layout-align="space-around stretch" layout-margin layout-padding>
@@ -85,6 +88,6 @@
       
   </form>
   </md-whiteframe>
-</div>
+</div>-->
 
 <md-divider></md-divider>
