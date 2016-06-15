@@ -1,0 +1,12 @@
+<h1>Item details</h1>
+
+<div ng-show="ItemsDetailsCtrl.loading">
+  Loading item...
+</div>
+
+<div ng-hide="ItemsDetailsCtrl.loading">
+  <ul>
+    <li><p>Name: {{ItemsDetailsCtrl.item.name}}</p></li>
+    <li><p>Description: {{ItemsDetailsCtrl.item.description}}</p></li>
+  </ul>
+</div>

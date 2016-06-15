@@ -1,0 +1,7 @@
+<h1>Items</h1>
+
+<ul>
+  <li ng-repeat="item in ItemsCtrl.ItemsSrv.get()">
+    <p><a ui-sref="items-details({code: item.code})">{{item.name}}</a></p>
+  </li>
+</ul>
