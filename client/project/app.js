@@ -12,8 +12,6 @@ angular.module('appenda', [
       .warnPalette('deep-orange')
       .accentPalette('indigo')
       .backgroundPalette('grey');
-      
-
 })
 
 .config(($stateProvider, $urlRouterProvider) => {
