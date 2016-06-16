@@ -12,16 +12,102 @@
   <body ng-app="artoo">
     <appbar></appbar>
     
-    <!-- create an items resource mapped on a json -->
-    
     <!-- create a reddit resource to play with reddits -->
     <!-- https://www.reddit.com/dev/api#GET_search -->
-    <!-- https://www.reddit.com/search.json -->
+    <!-- https://www.reddit.com/search.json?q=ferrari -->
+         
+    <div ng-controller="RedditCtrl">
+      
+      <form autocomplete="off">
+        <label>
+          Search: 
+          <input name="search" type="text" ng-model="search.q">
+        </label>
+        <div>
+          <label>
+            Hottest
+            <input name="sort" type="radio" ng-model="search.sort" value="hot">
+          </label>
+          <label>
+            Top
+            <input name="sort" type="radio" ng-model="search.sort" value="top">
+          </label>
+          <label>
+            Most recent
+            <input name="sort" type="radio" ng-model="search.sort" value="new">
+          </label>
+        </div>
+        
+      </form>
+      
+      <div ng-show="loading">Loading reddits...</div>
+      
+      <ul>
+        <li ng-hide="loading" ng-repeat="reddit in reddits">
+          <a href="{{reddit.data.url}}" target="_blank">{{reddit.data.title}}</a>
+        </li>
+      </ul>
+      
+    </div>
+    
+    <hr>
+    
+    <!-- create an items resource mapped on a json -->
+    
+    <!-- create an API interface for the following resources -->
+    <!-- http://jsonplaceholder.typicode.com/users
+         http://jsonplaceholder.typicode.com/posts
+         http://jsonplaceholder.typicode.com/comments
+         http://jsonplaceholder.typicode.com/albums
+         http://jsonplaceholder.typicode.com/todos -->
+    
+    <div ng-controller="UsersCtrl">
+      
+      <form name="form" ng-submit="save(user, form)" ng-model="user" novalidate autocomplete="off">
+        <label>
+          Name:
+          <input type="text" ng-model="user.name" required>
+        </label>
+        
+        <label>
+          Email: 
+          <input type="text" ng-model="user.email" required>
+        </label>
+        
+        <button type="submit" ng-disabled="form.$invalid || loading">
+          <span ng-hide="loading">Save</span>
+          <span ng-show="loading">Loading...</span>
+        </button>
+      </form>
+      
+      <div ng-show="loading">Loading...</div>
+      
+      <div ng-hide="loading">
+        <ul>
+          <li ng-repeat="user in users">
+            <a href ng-click="getDetails(user.id)">{{user.name}}</a>
+            <button ng-click="remove(user)">Remove</button>
+          </li>
+        </ul>
+      </div>
+      
+      <div ng-show="userDetails && !loading">
+        <p><strong>Name:</strong> {{userDetails.name}}</p>
+        <p><strong>Username:</strong> {{userDetails.username}}</p>
+        <p><strong>Email:</strong> {{userDetails.email}}</p>
+      </div>
+      
+    </div>
     
     <script src="node_modules/angular/angular.min.js"></script>
     <!-- load angular-resource -->
+    <script src="node_modules/angular-resource/angular-resource.min.js"></script>
     
     <script src="ui/appbar/appbar.js"></script>
     <script src="subjects/promises/app.js"></script>
+    <script src="subjects/promises/users/users.service.js"></script>
+    <script src="subjects/promises/users/users.controller.js"></script>
+    <script src="subjects/promises/reddit/reddit.controller.js"></script>
+    <script src="subjects/promises/reddit/reddit.service.js"></script>
   </body>
 </html>

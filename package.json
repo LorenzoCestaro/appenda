@@ -24,6 +24,7 @@
     "angular-material-datetimepicker": "^1.4.0",
     "angular-messages": "^1.5.5",
     "angular-mocks": "^1.5.5",
+    "angular-resource": "^1.5.7",
     "angular-route": "^1.5.5",
     "angular-sanitize": "^1.5.5",
     "angular-ui-router": "^0.3.1",
