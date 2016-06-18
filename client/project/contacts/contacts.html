@@ -7,8 +7,12 @@
 </div>
 
 <md-content>
+  <md-content layout="row" layout-margin layout-padding>
+    <md-button class="md-raised md-primary" ui-sref="add-contact" flex>Add new contact</md-button>
+    <md-button class="md-raised md-primary" ng-click="query()" flex>Refresh list</md-button>
+  </md-content>
   <md-list flex layout-margin>
-    <md-list-item  md-whiteframe="3" class="md-3-line" ng-click="null" ng-repeat="contact in ContactsCtrl.ContactsSrv.get() | filterByNameSurname:search">
+    <md-list-item  md-whiteframe="3" class="md-3-line" ng-click="null" ng-repeat="contact in contacts | filterByNameSurname:search">
       <img ng-src="{{contact.img}}?{{$index}}" class="md-avatar" alt="{{contact.name}}" />
       <div class="md-list-item-text" layout="column">
         <h3><strong>{{contact.surname}} {{contact.name}}</strong></h3>
@@ -16,78 +20,11 @@
         <p ng-show="contact.email">{{contact.email}}</p>
         <p ng-hide="contact.email">Add contact email</p>
       </div>
-      <md-button class="md-raised md-secondary" ng-click="ContactsCtrl.ContactsSrv.delete(contact.id)" >delete</md-button>
+      <md-button class="md-raised md-secondary" ng-click="remove(contact)" >delete</md-button>
       
       <md-divider ng-if="!$last"></md-divider>
     </md-list-item>
   </md-list>
 </md-content>
-<md-content layout="row" layout-margin layout-padding>
-  <md-button class="md-raised md-primary" ui-sref="add-contact" flex>Add new contact</md-button>
-</md-content>
-
-<!--<md-divider></md-divider>
-
-<div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
-  <md-whiteframe class="md-whiteframe-5dp" flex="100" layout="column" layout-align="space-around stretch" layout-margin layout-padding>
-    <div class="md-title">New Contact</div>
-    <form name='contactForm' ng-submit="ContactsCtrl.add(ContactsCtrl.newContact, contactForm)" novalidate autocomplete="off" flex>
-    
-    <div layout="column" layout-padding layout-margin>
-      
-      <div layout="row" layout-align="space-between center">
-        <md-input-container class="md-icon-float md-block" flex="45">
-          <label><i class="material-icons">account_circle</i> Name</label>
-          <input name="name" ng-model="ContactsCtrl.newContact.name" type="text" ng-required="true">
-          
-          <div ng-messages="contactForm.name.$error" role="alert">
-            <div ng-message="required" class="my-message">You must insert a contact name</div>
-          </div>
-        </md-input-container>
-        
-        <md-input-container class="md-icon-float md-block" flex="45">
-          <label><i class="material-icons">account_circle</i> Surname</label>
-          <input name="surname" ng-model="ContactsCtrl.newContact.surname" type="text" ng-required="true">
-          
-          <div ng-messages="contactForm.surname.$error" md-auto-hide="true" role="alert">
-            <div ng-message="required" class="my-message">You must insert a contact surname</div>
-          </div>
-        </md-input-container>
-      </div>
-      
-      <md-input-container md-no-float class="md-block">
-        <label><i class="material-icons">phone</i> Phone</label>
-        <input name="phone" ng-model="ContactsCtrl.newContact.phone" ng-pattern="/^[0-9]{9,10}$/" ng-required="true">
-        
-        <div ng-messages="contactForm.phone.$error" role="alert">
-            <div ng-message-exp="['required', 'pattern']" class="my-message">You must insert a ten digit number</div>
-          </div>
-      </md-input-container>
-      
-      <md-input-container class="md-block">
-        <label><i class="material-icons">email</i> Email</label>
-        <input name="email" ng-pattern="/^.+@.+\..+$/" ng-model="ContactsCtrl.newContact.email" type="email">
-        
-        <div ng-messages="contactForm.email.$error" role="alert">
-          <div ng-message="pattern" class="my-message">You must insert a valid email.</div>
-        </div>
-      </md-input-container>
-      
-      <md-input-container class="md-block">
-        <label><i class="material-icons">image</i> Image Url</label>
-        <input name="img" ng-model="ContactsCtrl.newContact.img" type="url">
-        
-        <div ng-messages="ContactsCtrl.contactForm.img.$error" role="alert">
-          <div ng-message="url" class="my-message">You must insert a valid url</div>
-        </div>
-      </md-input-container>
-      
-      <button type="submit" class="md-button md-raised md-accent" ng-disabled="contactForm.$invalid" flex>Save</button>
-    
-    </div>
-      
-  </form>
-  </md-whiteframe>
-</div>-->
 
 <md-divider></md-divider>

@@ -10,6 +10,7 @@ module.exports = function () {
     res.status(201).send({result: 'Item ' + req.body.name + ' created!'});
   }
   
+  
   // public API
   return {
     query: query,

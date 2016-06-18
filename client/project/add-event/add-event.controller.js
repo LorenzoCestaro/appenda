@@ -1,9 +1,17 @@
-angular.module('appenda').controller('AddEventCtrl', function ($state, EventsSrv) {
+angular.module('appenda').controller('AddEventCtrl', function ($scope, $state, EventsSrv) {
   this.minDate = new Date();
   
-  this.add = function (newEvent, form) {
-    EventsSrv.create(newEvent);
-    this.newEvent = {};
-    $state.go('home');
-  };
+  $scope.newEvent = EventsSrv.create(); 
+  
+  $scope.save = function (newEvent, form) {
+    newEvent.$save(newEvent)
+      .then((data) => {
+        newEvent = EventsSrv.create();
+        form.$setPristine;
+        $state.go('home');
+      })
+      .catch(err => console.error(err))
+      .finally();
+  }
 })
+

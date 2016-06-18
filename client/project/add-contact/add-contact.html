@@ -1,14 +1,14 @@
 <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
   <md-whiteframe class="md-whiteframe-5dp" flex="100" layout="column" layout-align="space-around stretch" layout-margin layout-padding>
     <div class="md-title">Add New Contact</div>
-    <form name='contactForm' ng-submit="AddContactCtrl.add(AddContactCtrl.newContact, contactForm)" novalidate autocomplete="off" flex>
+    <form name='contactForm' ng-submit="save(newContact, contactForm)" novalidate autocomplete="off" flex>
     
     <div layout="column" layout-padding layout-margin>
       
       <div layout="row" layout-align="space-between center">
         <md-input-container class="md-icon-float md-block" flex="45">
           <label><i class="material-icons">account_circle</i> Name</label>
-          <input name="name" ng-model="AddContactCtrl.newContact.name" type="text" ng-required="true">
+          <input name="name" ng-model="newContact.name" type="text" ng-required="true">
           
           <div ng-messages="contactForm.name.$error" role="alert">
             <div ng-message="required" class="my-message">You must insert a contact name</div>
@@ -17,7 +17,7 @@
         
         <md-input-container class="md-icon-float md-block" flex="45">
           <label><i class="material-icons">account_circle</i> Surname</label>
-          <input name="surname" ng-model="AddContactCtrl.newContact.surname" type="text" ng-required="true">
+          <input name="surname" ng-model="newContact.surname" type="text" ng-required="true">
           
           <div ng-messages="contactForm.surname.$error" md-auto-hide="true" role="alert">
             <div ng-message="required" class="my-message">You must insert a contact surname</div>
@@ -27,7 +27,7 @@
       
       <md-input-container md-no-float class="md-block">
         <label><i class="material-icons">phone</i> Phone</label>
-        <input name="phone" ng-model="AddContactCtrl.newContact.phone" ng-pattern="/^[0-9]{9,10}$/" ng-required="true">
+        <input name="phone" ng-model="newContact.phone" ng-pattern="/^[0-9]{9,10}$/" ng-required="true">
         
         <div ng-messages="contactForm.phone.$error" role="alert">
             <div ng-message-exp="['required', 'pattern']" class="my-message">You must insert a ten digit number</div>
@@ -36,7 +36,7 @@
       
       <md-input-container class="md-block">
         <label><i class="material-icons">email</i> Email</label>
-        <input name="email" ng-pattern="/^.+@.+\..+$/" ng-model="AddContactCtrl.newContact.email" type="email">
+        <input name="email" ng-pattern="/^.+@.+\..+$/" ng-model="newContact.email" type="email">
         
         <div ng-messages="contactForm.email.$error" role="alert">
           <div ng-message="pattern" class="my-message">You must insert a valid email.</div>
@@ -45,7 +45,7 @@
       
       <md-input-container class="md-block">
         <label><i class="material-icons">image</i> Image Url</label>
-        <input name="img" ng-model="AddContactCtrl.newContact.img" type="url">
+        <input name="img" ng-model="newContact.img" type="url">
         
         <div ng-messages="ContactCtrl.contactForm.img.$error" role="alert">
           <div ng-message="url" class="my-message">You must insert a valid url</div>

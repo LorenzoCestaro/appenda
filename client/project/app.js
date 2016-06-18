@@ -4,6 +4,7 @@ angular.module('appenda', [
   'ngAnimate',
   'ngMaterial',
   'ui.router',
+  'ngResource',
 ])
 
 .config(($mdThemingProvider) => {
