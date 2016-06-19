@@ -2,10 +2,11 @@ angular.module('appenda').controller('ContactsCtrl', function ($scope, ContactsS
   this.ContactsSrv = ContactsSrv;
   
   $scope.query = function () {
+    $scope.queryLoading = true;
     ContactsSrv.query()
     .then(data => $scope.contacts = data)
     .catch(err => console.error(err))
-    .finally();
+    .finally($scope.queryLoading = false);
   };
   
   $scope.query();

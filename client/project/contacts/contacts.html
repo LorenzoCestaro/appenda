@@ -8,10 +8,15 @@
 
 <md-content>
   <md-content layout="row" layout-margin layout-padding>
-    <md-button class="md-raised md-primary" ui-sref="add-contact" flex>Add new contact</md-button>
-    <md-button class="md-raised md-primary" ng-click="query()" flex>Refresh list</md-button>
+    <md-button ng-disabled="queryLoading" class="md-raised md-primary" ui-sref="add-contact" flex>Add new contact</md-button>
+    <md-button ng-disabled="queryLoading" class="md-raised md-primary" ng-click="query()" flex>Refresh list</md-button>
   </md-content>
-  <md-list flex layout-margin>
+  
+  <div ng-show="queryLoading" layout="row" layout-sm="column" layout-align="space-around">
+    <md-progress-circular class="md-warn" md-mode="indeterminate" md-diameter="150"></md-progress-circular>
+  </div>
+  
+  <md-list ng-hide="queryLoading" flex layout-margin>
     <md-list-item  md-whiteframe="3" class="md-3-line" ng-click="null" ng-repeat="contact in contacts | filterByNameSurname:search">
       <img ng-src="{{contact.img}}?{{$index}}" class="md-avatar" alt="{{contact.name}}" />
       <div class="md-list-item-text" layout="column">
