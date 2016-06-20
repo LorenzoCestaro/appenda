@@ -53,7 +53,7 @@ app.use('/', express.static(path.join(__dirname, '..', 'client')));
 
 // define here your API
 //app.use('/api/items', require('./exercises/middlewares/timeRequest'), require('./exercises/middlewares/mean'), require('./exercises/items').router);
-app.use('/api/users', require('./exercises/users').router);
+//app.use('/api/users', require('./exercises/users').router);
 app.use('/api/contacts', require('./project/contacts').router);
 app.use('/api/events', require('./project/events').router);
 

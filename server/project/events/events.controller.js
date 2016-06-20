@@ -1,31 +1,31 @@
+var Event = require('./events.model')
+
 module.exports = function () {
-  var events = require('./events.js').slice();
-  
-  var index = function (id) {
-    return events.indexOf(events.find(singleEvent => singleEvent.id === parseInt(id)));
-  };
   
   function query (req, res) {
-   res.status(200).send(events);
-    
-  };
+    Event.find().exec()
+      .then(events => res.status(200).send(events))
+      .catch(err => res.status(500).send('Unable to access events collection'))
+  }
   
   function remove (req, res) {
-    if(index(req.params.id) < 0) res.status(404).send('Event non found')
-    events.splice(index(req.params.id), 1);
-    res.status(200).send();
-  };
+    Event.findByIdAndRemove(req.params.id).exec()
+      .then(data => res.status(200).send('Event successfully removed'))
+      .catch(err => res.status(500).send('Unable to remove event'));
+  }
   
   function reset (req, res){
-    events = require('./events.js').slice();
-    res.status(200).send('Events reset');
+    Event.remove()
+      .then(data => Event.create(require('./events.js')))
+      .then(data => res.status(200).send('Successfully reset events collection'))
+      .catch(err => res.status(500).send('Unable to reset db'))
   }
   
   function save (req, res){
-    req.body.id = events.length;
-    req.body.location = req.body.location || 'Insert event location';
-    events.push(req.body);
-    res.status(200).send('Record saved');
+    var newEvent = new Event(req.body);
+    newEvent.save()
+      .then(data => res.status(200).send('Event successfully saved'))
+      .catch(err => res.status(500).send('Unable to save any event'))
   }
   
   // public API

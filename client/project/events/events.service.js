@@ -3,7 +3,7 @@ angular.module('appenda').service('EventsSrv', function ($resource) {
   this.maxId = 3;
   
   var Event = $resource ('/api/events/:id', {
-    id: '@id',
+    id: '@_id',
   }, {});
   
   //public API

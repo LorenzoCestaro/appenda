@@ -1,5 +1,4 @@
 module.exports = [{
-    id: 0,
     title: 'Dentist',
     date: new Date(), // temporary
     time: new Date(),
@@ -7,7 +6,6 @@ module.exports = [{
     bindedContacts: [],
     notes: 'pulizia dei denti',
   }, {
-    id: 1,
     title: 'Dinner',
     date: new Date(1991, 00, 17), // temporary
     time: new Date(), // temporary
@@ -15,7 +13,6 @@ module.exports = [{
     bindedContacts: [],
     notes: '',
   },{
-    id: 2,
     title: 'Shopping',
     date: new Date(1991, 00, 17), // temporary
     time: new Date(), // temporary
