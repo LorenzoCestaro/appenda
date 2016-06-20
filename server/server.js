@@ -7,12 +7,12 @@ const path = require('path');
 const development = (process.env.NODE_ENV === 'production') ? false : true;
 const settings = require('./settings');
 
-// const mongoose = require('mongoose');
-// mongoose.Promise = require('bluebird');
-// mongoose.connect(settings.mongoUrl, (err) => {
-//   if (err) throw new Error(err);
-//   console.info('Connection to the database was successfull.');
-// });
+const mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
+mongoose.connect(settings.mongoUrl, (err) => {
+  if (err) throw new Error(err);
+  console.info('Connection to the database was successfull.');
+});
 
 // setup server
 const app = express();
@@ -53,7 +53,7 @@ app.use('/', express.static(path.join(__dirname, '..', 'client')));
 
 // define here your API
 //app.use('/api/items', require('./exercises/middlewares/timeRequest'), require('./exercises/middlewares/mean'), require('./exercises/items').router);
-//app.use('/api/users', require('./exercises/users').router);
+app.use('/api/users', require('./exercises/users').router);
 app.use('/api/contacts', require('./project/contacts').router);
 app.use('/api/events', require('./project/events').router);
 
