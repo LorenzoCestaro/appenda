@@ -6,6 +6,7 @@ router.get('/', controller.query);
 router.delete('/:id', controller.remove);
 router.get('/reset', controller.reset);
 router.post('/', controller.save);
+router.put('/:id', controller.update);
 
 module.exports = {
   name: 'events',

@@ -9,6 +9,12 @@ module.exports = function  () {
       .catch(err => res.status(500).send('Unable to access contacts collection'));
   }
   
+  function getContact (req, res) {
+    Contact.findOne({_id: req.params.id}).exec()
+      .then(contact => res.status(200).send(contact))
+      .catch(err => res.status(500).send('Unable to access contact'));
+  }
+  
   function remove (req, res) {
     Contact.findByIdAndRemove(req.params.id).exec()
       .then(data => res.status(200).send('Contact successfully removed'))
@@ -28,15 +34,24 @@ module.exports = function  () {
     var newContact = new Contact(req.body);
     
     newContact.save()
-      .then(data => res.status(200).send('Contact successfully saved'))
+      .then(data => res.status(201).send('Contact successfully saved'))
       .catch(err => res.status(500).send('Unable to save contact'));
   }
+  
+  function update (req, res) {
+    Contact.findByIdAndUpdate(req.params.id, {$set: req.body})
+      .then(data => res.status(200).send('Contact successfully updated'))
+      .catch(err => res.status(500).send('Unable to update contact'))
+  }
+  
   
   // public API
   return {
     query: query,
+    getContact: getContact,
     remove: remove,
     reset: reset,
     save: save,
+    update: update,
   };
 };

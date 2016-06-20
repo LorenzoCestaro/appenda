@@ -28,11 +28,18 @@ module.exports = function () {
       .catch(err => res.status(500).send('Unable to save any event'))
   }
   
+  function update (req, res){
+    Event.findByIdAndUpdate(req.params.id, {$set: req.body})
+    .then(data => res.status(200).send('Event successfully updated'))
+    .catch(err => res.status(500).send('Unable to update event'))
+  }
+  
   // public API
   return {
     query: query,
     remove: remove,
     reset: reset,
     save: save,
+    update: update,
   };
 };

@@ -28,7 +28,7 @@ angular.module('appenda', [
       controller: 'AddContactCtrl',
       controllerAs: 'AddContactCtrl',
       templateUrl:'project/add-contact/add-contact.html',
-      url: '/add-contact',
+      url: '/add-contact/:id',
     })
     
     .state('add-event', {

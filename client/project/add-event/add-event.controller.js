@@ -5,6 +5,7 @@ angular.module('appenda').controller('AddEventCtrl', function ($scope, $state, E
   
   $scope.save = function (newEvent, form) {
     newEvent.title = newEvent.title.charAt(0).toUpperCase() + newEvent.title.slice(1);
+    
     newEvent.$save(newEvent)
       .then((data) => {
         newEvent = EventsSrv.create();

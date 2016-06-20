@@ -1,12 +1,14 @@
 angular.module('appenda').service('ContactsSrv', function ($resource) {
   
-  this.maxId = 5;
-  
   var Contact = $resource('/api/contacts/:id', {
     id: '@_id',
   }, {});
   
   // public API
+  
+  this.getContact = function (id) {
+    return Contact.get({id: id}).$promise;
+  };
   
   this.query = function () {
     return Contact.query().$promise;

@@ -1,4 +1,4 @@
-angular.module('appenda').controller('ContactsCtrl', function ($scope, ContactsSrv) {
+angular.module('appenda').controller('ContactsCtrl', function ($scope, $state, ContactsSrv) {
   this.ContactsSrv = ContactsSrv;
   
   $scope.query = function () {
