@@ -36,6 +36,29 @@
           <input name="location" ng-model="newEvent.location" type="text">
         </md-input-container>
         
+        <div layout="row">
+          <md-input-container class="md-icon-float md-block" flex>
+            <label>Contacts</label>
+              <md-select name="contactSelect" 
+                   ng-model="newEvent.bindedContacts"
+                   md-on-open="query()"
+                   md-on-close="clearSearchTerm(contactSelect)"
+                   data-md-container-class="selectdemoSelectHeader"
+                   multiple>
+                <md-select-header class="demo-select-header">
+                  <input ng-model="searchTerm"
+                     type="search"
+                     placeholder="Search for contacts.."
+                     class="demo-header-searchbox _md-text">
+                </md-select-header>
+                <md-optgroup label="contacts">
+                  <md-option ng-value="contact._id" ng-repeat="contact in contacts |
+                    filter:searchTerm">{{contact.name}} {{contact.surname}}</md-option>
+                </md-optgroup>
+              </md-select>
+          </md-input-container>
+        </div>
+        
         <md-input-container class="md-icon-float md-block" flex>
           <label><i class="material-icons">note_add</i> Notes</label>
           <textarea rows="5" name="time" ng-model="newEvent.notes"></textarea>

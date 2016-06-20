@@ -1,4 +1,4 @@
-angular.module('appenda').controller('AddEventCtrl', function ($scope, $state, EventsSrv) {
+angular.module('appenda').controller('AddEventCtrl', function ($scope, $state, EventsSrv, ContactsSrv) {
   this.minDate = new Date();
   
   $scope.newEvent = EventsSrv.create(); 
@@ -14,5 +14,15 @@ angular.module('appenda').controller('AddEventCtrl', function ($scope, $state, E
       .catch(err => console.error(err))
       .finally();
   }
-})
-
+  
+  $scope.clearSearchTerm = function(select) {
+     $scope.searchTerm = '';
+  };
+  
+  $scope.query = function () {
+    ContactsSrv.query()
+    .then(data => $scope.contacts = data)
+    .catch(err => console.error(err))
+    .finally();
+  };
+});
