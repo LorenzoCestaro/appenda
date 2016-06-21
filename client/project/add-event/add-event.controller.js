@@ -1,4 +1,4 @@
-angular.module('appenda').controller('AddEventCtrl', function ($scope, $state, $stateParams, EventsSrv, ContactsSrv) {
+angular.module('appenda').controller('AddEventCtrl', function ($scope, $state, $stateParams, EventsSrv, ContactsSrv, $timeout) {
   $scope.minDate = new Date();
   
   ContactsSrv.query()
@@ -12,6 +12,7 @@ angular.module('appenda').controller('AddEventCtrl', function ($scope, $state, $
         data.date = new Date(data.date);
         data.time = new Date(data.time);
         $scope.newEvent = data;
+        $timeout();
       })
       .catch(err => console.error(err));
   } else {
