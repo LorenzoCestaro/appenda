@@ -14,10 +14,10 @@
                 <div ng-message="required" class="my-message">You must insert a name for your event</div>
               </div>
           </md-input-container>
-          
           <md-datepicker ng-model="newEvent.date"
                          md-placeholder="Date"
-                         md-min-date="AddEventCtrl.minDate" flex="20">
+                         md-min-date="AddEventCtrl.minDate" flex="20"
+                         ng-required="true">
           </md-datepicker>
         </div>
         

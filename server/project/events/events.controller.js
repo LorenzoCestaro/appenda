@@ -9,6 +9,9 @@ module.exports = function () {
   }
   
   function remove (req, res) {
+    req.checkParams('id').isMongoId();
+    if (req.validationErrors()) return res.status(400).send('Bad request');
+    
     Event.findByIdAndRemove(req.params.id).exec()
       .then(data => res.status(200).send('Event successfully removed'))
       .catch(err => res.status(500).send('Unable to remove event'));
@@ -22,6 +25,18 @@ module.exports = function () {
   }
   
   function save (req, res){
+    req.sanitizeBody('date').toDate();
+    req.sanitizeBody('time').toDate();
+    
+    req.checkBody('title').isLength({min: 1, max: undefined});
+    req.checkBody('date').isDate();
+    req.checkBody('time').isDate();
+    
+    if (req.body.bindedContacts) req.checkBody('bindedContacts').isArray();
+    if (req.body.notes) req.checkBody('notes').isAlphanumeric();
+    console.log(req.validationErrors());
+    if (req.validationErrors()) return res.status(400).send('Bad request');
+
     var newEvent = new Event(req.body);
     newEvent.save()
       .then(data => res.status(200).send('Event successfully saved'))
@@ -29,6 +44,9 @@ module.exports = function () {
   }
   
   function update (req, res){
+    req.checkParams('id').isMongoId();
+    if (req.validationErrors()) return res.status(400).send('Bad request');
+    
     Event.findByIdAndUpdate(req.params.id, {$set: req.body})
     .then(data => res.status(200).send('Event successfully updated'))
     .catch(err => res.status(500).send('Unable to update event'))
