@@ -35,7 +35,7 @@ angular.module('appenda', [
       controller: 'AddEventCtrl',
       controllerAs: 'AddEventCtrl',
       templateUrl:'project/add-event/add-event.html',
-      url:'/add-event',
+      url:'/add-event/:id',
     });
 });
 

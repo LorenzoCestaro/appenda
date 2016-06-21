@@ -8,6 +8,15 @@ module.exports = function () {
       .catch(err => res.status(500).send('Unable to access events collection'))
   }
   
+  function getEvent (req, res) {
+    req.checkParams('id').isMongoId();
+    if (req.validationErrors()) return res.status(400).send('Bad request');
+    
+    Event.findOne({_id: req.params.id}).exec()
+      .then(event => res.status(200).send(event))
+      .catch(err => res.status(500).send('Unable to access event'));
+  }
+  
   function remove (req, res) {
     req.checkParams('id').isMongoId();
     if (req.validationErrors()) return res.status(400).send('Bad request');
@@ -33,7 +42,6 @@ module.exports = function () {
     req.checkBody('time').isDate();
     
     if (req.body.notes) req.checkBody('notes').isAlphanumeric();
-    console.log(req.validationErrors());
     if (req.validationErrors()) return res.status(400).send('Bad request');
 
     var newEvent = new Event(req.body);
@@ -46,6 +54,16 @@ module.exports = function () {
     req.checkParams('id').isMongoId();
     if (req.validationErrors()) return res.status(400).send('Bad request');
     
+    req.sanitizeBody('date').toDate();
+    req.sanitizeBody('time').toDate();
+    
+    req.checkBody('title').isLength({min: 1, max: undefined});
+    req.checkBody('date').isDate();
+    req.checkBody('time').isDate();
+    
+    if (req.body.notes) req.checkBody('notes').isAlphanumeric();
+    if (req.validationErrors()) return res.status(400).send('Bad request');
+    
     Event.findByIdAndUpdate(req.params.id, {$set: req.body})
     .then(data => res.status(200).send('Event successfully updated'))
     .catch(err => res.status(500).send('Unable to update event'))
@@ -54,6 +72,7 @@ module.exports = function () {
   // public API
   return {
     query: query,
+    getEvent: getEvent,
     remove: remove,
     reset: reset,
     save: save,

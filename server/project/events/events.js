@@ -17,6 +17,6 @@ module.exports = [{
     date: new Date(1991, 00, 17), // temporary
     time: new Date(), // temporary
     location: 'city center, Ancona',
-    bindedContacts: [],
+    bindedContacts: ['576810d7f4fdb1d83cadfbb2'],
     notes: 'buy fruits',
   },];

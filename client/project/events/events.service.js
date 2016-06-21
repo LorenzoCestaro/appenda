@@ -19,4 +19,8 @@ angular.module('appenda').service('EventsSrv', function ($resource) {
   this.delete = function () {
     return Event.delete().$promise;
   };
+  
+  this.getEvent = function (id) {
+    return Event.get({id: id}).$promise;
+  };
 });

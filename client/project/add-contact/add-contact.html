@@ -2,7 +2,12 @@
   <md-whiteframe class="md-whiteframe-5dp" flex="100" layout="column" layout-align="space-around stretch" layout-margin layout-padding>
     <div ng-hide="newContact._id" class="md-title">Add New Contact</div>
     <div ng-show="newContact._id" class="md-title">Edit {{::newContact.name}} {{::newContact.surname}}</div>
-    <form name='contactForm' ng-submit="save(newContact, contactForm)" novalidate autocomplete="off" flex>
+    
+    <div ng-show="getLoading" layout="row" layout-sm="column" layout-align="space-around">
+      <md-progress-circular class="md-warn" md-mode="indeterminate" md-diameter="150"></md-progress-circular>
+    </div>
+    
+    <form ng-hide="getLoading" name='contactForm' ng-submit="save(newContact)" novalidate autocomplete="off" flex>
     
     <div layout="column" layout-padding layout-margin>
       
