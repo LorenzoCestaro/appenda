@@ -32,7 +32,6 @@ module.exports = function () {
     req.checkBody('date').isDate();
     req.checkBody('time').isDate();
     
-    if (req.body.bindedContacts) req.checkBody('bindedContacts').isArray();
     if (req.body.notes) req.checkBody('notes').isAlphanumeric();
     console.log(req.validationErrors());
     if (req.validationErrors()) return res.status(400).send('Bad request');
