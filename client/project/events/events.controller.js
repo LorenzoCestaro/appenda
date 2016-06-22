@@ -1,4 +1,4 @@
-angular.module('appenda').controller('EventsCtrl', function ($scope, EventsSrv) {
+angular.module('appenda').controller('EventsCtrl', function ($scope, $mdToast, EventsSrv) {
   this.EventsSrv = EventsSrv;
   
   $scope.query = function () {
@@ -23,5 +23,18 @@ angular.module('appenda').controller('EventsCtrl', function ($scope, EventsSrv) 
     .finally();
   };
   
+  $scope.showNotes = function (event) {
+    event.showNotes = event.showNotes || false;
+    return (event.showNotes) ? event.showNotes = false : event.showNotes = true;
+  };
+  
+  $scope.showDeleteToast = function (deleted) {
+    var toast = $mdToast.simple()
+                  .position('top right')
+                  .action('OK')
+                  .textContent('You removed your ' + deleted.title + ' appointment!')
+                  .hideDelay(3000);
+    $mdToast.show(toast);
+  };
   
 });

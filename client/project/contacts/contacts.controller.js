@@ -1,4 +1,4 @@
-angular.module('appenda').controller('ContactsCtrl', function ($scope, $state, $mdToast, $timeout, ContactsSrv) {
+angular.module('appenda').controller('ContactsCtrl', function ($scope, $state, $mdToast, ContactsSrv) {
   this.ContactsSrv = ContactsSrv;
   
   $scope.query = function () {
@@ -13,34 +13,24 @@ angular.module('appenda').controller('ContactsCtrl', function ($scope, $state, $
   
   $scope.remove = function (contact) {
     contact.simulRemove = true;
-    
-    removeTimeout = $timeout(() => {
       contact.$remove()
-        .then(data => ContactsSrv.query())
+        .then(() => ContactsSrv.query())
         .then(data => $scope.contacts = data)
         .catch((err) => {
           if(err.status === 404) {
-            alert('refresca fhii');
+            alert('Try to refresh the list');
           }
         })
         .finally();
-    }, 
-        3000
-    )};
+    };
   
-  $scope.showActionToast = function(deleted, contact) {
+  $scope.showDeleteToast = function(deleted) {
     var toast = $mdToast.simple()
                   .position('top right')
-                  .action('UNDO')
-                  .textContent('You removed ' + deleted + '!')
-                  .hideDelay(3000)
-    $mdToast.show(toast)
-      .then(function (response) {
-        if ( response == 'ok' ) {
-          $timeout.cancel(removeTimeout);
-          contact.simulRemove = false;
-        }
-      });
+                  .action('OK')
+                  .textContent('You removed ' + deleted.name + ' ' + deleted.surname + '!')
+                  .hideDelay(3000);
+    $mdToast.show(toast);
   };
   
 });

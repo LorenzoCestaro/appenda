@@ -33,5 +33,55 @@ module.exports = [{
     phone: '3333333333',
     email: 'szalaierik576@gmail.com',
     img: 'http://i.imgur.com/efVVwyK.jpg',
-  }];
+  },  {
+    _id: '576810d7f4fdb1d83cadfee2',
+    name: 'Raffaele',
+    surname: 'Pianella',
+    phone: '3333333333',
+    email: 'napuliiii@gmail.com',
+    img: 'http://scontent-mxp1-1.xx.fbcdn.net/t31.0-8/812552_556924961036683_112067437_o.jpg',
+  },{
+    _id: '576810d7f4fdb1d83cadfbc4',
+    name: 'Niki',
+    surname: 'Andreozzi',
+    phone: '3333333333',
+    email: 'capocc@a.com',
+    img: 'http://www.link2me.it/public/foto_user/avatar/9765_p_1448642530.jpg',
+  },  {
+    _id: '576810d7f4fdb1d83cadfee3',
+    name: 'Marco',
+    surname: 'Calcabrini',
+    phone: '3333333333',
+    email: 'calcab@gmail.com',
+    img: 'https://media.licdn.com/mpr/mpr/shrink_100_100/AAEAAQAAAAAAAAjFAAAAJGY2MTA5N2E2LTk0NjctNDJkZC1hMjUyLTk0NjQ4NTVjZGVmNw.jpg',
+  },  {
+    _id: '576810d7f4fdb1d91ca88ee3',
+    name: 'Gabriele',
+    surname: 'Mariotti',
+    phone: '3333333333',
+    email: 'johnnyB@gmail.com',
+    img: 'https://i.ytimg.com/vi/jFdZLQinqTg/hqdefault.jpg?custom=true&w=120&h=90&jpg444=true&jpgq=90&sp=68&sigh=yxY73JZeIDGD3yRttgk4kvVSlv8',
+  },{
+    _id: '576810d7f4fdb1d91ca88ee9',
+    name: 'Mattia',
+    surname: 'Esposito',
+    phone: '3333333333',
+    email: 'espodrone@gmail.com',
+    img: 'http://s3.foxmovies.com/foxmovies/production/films/103/images/featured_content/111-front.jpg',
+  },{
+    _id: '576810d7f4fdb1d914448ee9',
+    name: 'Elsaid',
+    surname: 'Gjonaj',
+    phone: '3333333333',
+    email: 'elsy.gjonaj@gmail.com',
+    img: 'http://scontent-mxp1-1.xx.fbcdn.net/t31.0-8/13221351_1146500132046942_6158096270264610318_o.jpg',
+  },{
+    _id: '576870d7f4fdb1d91ca88ee9',
+    name: 'David',
+    surname: 'Sorrentino',
+    phone: '3333333333',
+    email: 'davìdSorrentino@time.is',
+    img: 'http://job.davidsorrentino.com/images/me.jpg',
+  },];
+  
   

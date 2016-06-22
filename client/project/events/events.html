@@ -29,22 +29,20 @@
       <h3><strong>{{event.title}}</strong></h3>
       <h4>{{event.date | date:"dd/MM/yyyy"}} - {{event.time | date:"HH:mm"}}</h4>
       <p>{{event.location}}</p>
-      <!--<p>{{event.notes}}</p>-->
-      <!--<button class="md-button md-raised md-accent flex" -->
-      <!--ng-click="EventsCtrl.openOffscreen(EventsCtrl.detailsFormat([{val: event.location}, {val: event.notes}]))">More Info</button>-->
+      <p ng-show="event.showNotes"><strong>Notes: </strong>{{event.notes}}</p>
     </div>
     <div layout="row">
     <md-tab-item>
-      <md-button class="md-primary md-icon-button" ng-click="showListBottomSheet()">
+      <md-button ng-show="event.notes" ng-click="showNotes(event)" class="md-primary md-icon-button" ng-click="showListBottomSheet()">
         <md-tooltip md-direction="down">Show Notes</md-tooltip>
-        <i class="fa fa-info fa-2x" aria-hidden="true"></i>
+        <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
         </md-button>
     </md-tab-item>
       <md-button class="md-icon-button md-primary" ui-sref="add-event({id: event._id})">
         <md-tooltip md-direction="down">Edit</md-tooltip>
         <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
       </md-button>
-      <md-button class="md-icon-button md-warn" ng-click="remove(event)">
+      <md-button ng-click="showDeleteToast(event); remove(event)" class="md-icon-button md-warn">
         <md-tooltip md-direction="down">Delete</md-tooltip>
         <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
       </md-dbutton>

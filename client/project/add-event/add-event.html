@@ -71,7 +71,11 @@
         </div>
         <md-input-container class="md-icon-float md-block" flex>
           <label><i class="material-icons">note_add</i> Notes</label>
-          <textarea rows="5" name="time" ng-model="newEvent.notes"></textarea>
+          <input md-maxlength="100" name="time" ng-model="newEvent.notes">
+          
+        <div ng-messages="eventForm.notes.$error">
+          <div ng-message="md-maxlength">The notes have to be less than 100 characters long.</div>
+        </div>
         </md-input-container>
       </div>
     </form>
