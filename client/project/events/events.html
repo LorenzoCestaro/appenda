@@ -24,7 +24,7 @@
 </div>
 
 <md-list ng-hide="queryLoading" flex layout-margin>
-  <md-list-item md-whiteframe="3"  class="md-3-line" ng-click="null" ng-repeat="event in events | filterTitle:search">
+  <md-list-item md-whiteframe="3"  class="md-3-line" ng-click="null" ng-repeat="event in events | filterTitle:search | orderBy:'date'">
     <div class="md-list-item-text" layout="column">
       <h3><strong>{{event.title}}</strong></h3>
       <h4>{{event.date | date:"dd/MM/yyyy"}} - {{event.time | date:"HH:mm"}}</h4>
