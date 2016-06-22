@@ -34,12 +34,12 @@
       <!--ng-click="EventsCtrl.openOffscreen(EventsCtrl.detailsFormat([{val: event.location}, {val: event.notes}]))">More Info</button>-->
     </div>
     <div layout="row">
-      
+    <md-tab-item>
       <md-button class="md-primary md-icon-button" ng-click="showListBottomSheet()">
         <md-tooltip md-direction="down">Show Notes</md-tooltip>
         <i class="fa fa-info fa-2x" aria-hidden="true"></i>
         </md-button>
-      
+    </md-tab-item>
       <md-button class="md-icon-button md-primary" ui-sref="add-event({id: event._id})">
         <md-tooltip md-direction="down">Edit</md-tooltip>
         <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>

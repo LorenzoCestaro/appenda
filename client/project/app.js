@@ -11,7 +11,7 @@ angular.module('appenda', [
     $mdThemingProvider.theme('default')
       .primaryPalette('teal')
       .warnPalette('red')
-      .accentPalette('lime')
+      .accentPalette('amber')
       .backgroundPalette('grey');
       
 
