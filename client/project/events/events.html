@@ -1,4 +1,17 @@
-<div class="md-display-1" layout-margin layout-padding>Events</div>
+<div layout="row">
+  <div class="md-display-1" layout-margin layout-padding>Events</div>
+  <md-content layout="row" layout-align="end center">
+    <md-button ng-disabled="queryLoading" class="md-icon-button md-primary" ui-sref="add-event">
+      <md-tooltip md-direction="down">New event</md-tooltip>
+      <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
+    </md-button>
+    <md-button class="md-icon-button md-primary" ng-disabled="queryLoading"  ng-click="query()">
+      <md-tooltip md-direction="down">Refresh</md-tooltip>
+      <i class="fa fa-refresh fa-2x" aria-hidden="true"></i>
+    </md-button>
+  </md-content>
+</div>
+
 <div layout-margin layout-padding>
   <md-input-container class="md-block" flex>
     <label><i class="material-icons">search</i> Find an event</label>
@@ -6,34 +19,35 @@
   </md-input-container>
 </div>
 
-<md-content>
-  <md-content layout="row" layout-margin layout-padding>
-  <md-button ng-disabled="queryLoading" class="md-raised md-primary" ui-sref="add-event" flex>Add new event</md-button>
-  <md-button ng-disabled="queryLoading" class="md-raised md-primary" ng-click="query()" flex>Refresh list</md-button>
-</md-content>
-
 <div ng-show="queryLoading" layout="row" layout-align="space-around center">
   <md-progress-circular class="md-warn" md-mode="indeterminate" md-diameter="150"></md-progress-circular>
 </div>
 
-  <md-list ng-hide="queryLoading" flex layout-margin>
-    <md-list-item md-whiteframe="3"  class="md-3-line" ng-click="null" ng-repeat="event in events | filterTitle:search">
-      <div class="md-list-item-text" layout="column">
-        <h3><strong>{{event.title}}</strong></h3>
-        <h4>{{event.date | date:"dd/MM/yyyy"}} - {{event.time | date:"HH:mm"}}</h4>
-        <p>{{event.location}}</p>
-        <!--<p>{{event.notes}}</p>-->
-        <!--<button class="md-button md-raised md-accent flex" -->
-        <!--ng-click="EventsCtrl.openOffscreen(EventsCtrl.detailsFormat([{val: event.location}, {val: event.notes}]))">More Info</button>-->
-      </div>
-      <div layout="row">
-        <md-button class="md-raised md-primary" ui-sref="add-event({id: event._id})">edit</md-button>
-        <md-button class="md-raised md-warn" ng-click="remove(event)" >delete</md-button>
-      </div>
-    </md-list-item>
-  </md-list>
-</md-content>
-
-
-
-
+<md-list ng-hide="queryLoading" flex layout-margin>
+  <md-list-item md-whiteframe="3"  class="md-3-line" ng-click="null" ng-repeat="event in events | filterTitle:search">
+    <div class="md-list-item-text" layout="column">
+      <h3><strong>{{event.title}}</strong></h3>
+      <h4>{{event.date | date:"dd/MM/yyyy"}} - {{event.time | date:"HH:mm"}}</h4>
+      <p>{{event.location}}</p>
+      <!--<p>{{event.notes}}</p>-->
+      <!--<button class="md-button md-raised md-accent flex" -->
+      <!--ng-click="EventsCtrl.openOffscreen(EventsCtrl.detailsFormat([{val: event.location}, {val: event.notes}]))">More Info</button>-->
+    </div>
+    <div layout="row">
+      
+      <md-button class="md-primary md-icon-button" ng-click="showListBottomSheet()">
+        <md-tooltip md-direction="down">Show Notes</md-tooltip>
+        <i class="fa fa-info fa-2x" aria-hidden="true"></i>
+        </md-button>
+      
+      <md-button class="md-icon-button md-primary" ui-sref="add-event({id: event._id})">
+        <md-tooltip md-direction="down">Edit</md-tooltip>
+        <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
+      </md-button>
+      <md-button class="md-icon-button md-warn" ng-click="remove(event)">
+        <md-tooltip md-direction="down">Delete</md-tooltip>
+        <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+      </md-dbutton>
+    </div>
+  </md-list-item>
+</md-list>

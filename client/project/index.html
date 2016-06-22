@@ -8,11 +8,38 @@
     <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="project/css/style.css" type="text/css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
   </head>
   
   <body ng-app="appenda">
-    <div ui-view></div>
-    
+    <div layout="column" layout-fill>
+      <md-toolbar>
+     
+        <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+          
+          <md-button ng-disabled="$state.is('home')" class="md-primary" ui-sref="home" layout-padding layout-margin>
+            <i class="fa fa-angle-left" aria-hidden="true"></i> Events
+          </md-button>
+          
+          <a ui-sref="home">
+            <img src="http://www.selfrules.org/appenda/logo_appenda.png" />
+          </a>
+          
+          
+          <md-button ng-disabled="$state.is('contacts')" class="md-primary" ui-sref="contacts" layout-padding layout-margin>
+            Contacts <i class="fa fa-angle-right" aria-hidden="true"></i>
+          </md-button>
+        </div>
+      </md-toolbar>
+ 
+      <md-content ui-view flex></md-content>
+      
+      <footer>
+        <md-toolbar layout-align="center center" layout-padding>
+          <div flex >Handmade with <i class="fa fa-heart" aria-hidden="true"></i> by team AppEnda</div>
+        </md-toolbar>
+      </footer>
+    </div>
     
     <!-- scripts -->
     <script src="node_modules/angular/angular.min.js"></script>
@@ -40,7 +67,6 @@
     <script src="project/events/events.controller.js"></script>
     <script src="project/events/events.service.js"></script>
     <script src="project/events/events.filter.js"></script>
-    
     
   </body>
 </html>

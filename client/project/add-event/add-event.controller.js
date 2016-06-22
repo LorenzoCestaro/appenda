@@ -29,7 +29,7 @@ angular.module('appenda').controller('AddEventCtrl', function ($scope, $state, $
         newEvent = EventsSrv.create();
         $state.go('home');
       })
-      .catch(err => console.error('errore ' + err))
+      .catch(err => console.error(err))
       .finally();
   }
 

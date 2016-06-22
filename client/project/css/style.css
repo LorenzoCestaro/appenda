@@ -105,6 +105,6 @@ md-datepicker.ng-valid .md-datepicker-input-container.md-datepicker-invalid {
   border-bottom-color: rgb(224, 224, 224);
 }
 
-.diogan{
-  margin-left: -13px;
+.my-date-picker{
+  margin-top: 13px;
 }

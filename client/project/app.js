@@ -9,9 +9,9 @@ angular.module('appenda', [
 
 .config(($mdThemingProvider) => {
     $mdThemingProvider.theme('default')
-      .primaryPalette('blue-grey')
-      .warnPalette('deep-orange')
-      .accentPalette('indigo')
+      .primaryPalette('teal')
+      .warnPalette('red')
+      .accentPalette('lime')
       .backgroundPalette('grey');
       
 
@@ -22,6 +22,13 @@ angular.module('appenda', [
     .state('home', {
       templateUrl: 'project/home.html',
       url: '/',
+    })
+    
+    .state('contacts', {
+      controller: 'ContactsCtrl',
+      controllerAs: 'ContactsCtrl',
+      templateUrl: 'project/contacts/contacts.html',
+      url: '/contacts'
     })
     
     .state('add-contact', {
@@ -37,6 +44,10 @@ angular.module('appenda', [
       templateUrl:'project/add-event/add-event.html',
       url:'/add-event/:id',
     });
+})
+
+.run(($rootScope, $state) => {
+  $rootScope.$state = $state;
 });
 
 

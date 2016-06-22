@@ -1,60 +1,56 @@
-<div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
+<div layout="row" layout-padding layout-wrap style="padding-bottom: 32px;">
   <md-whiteframe class="md-whiteframe-5dp" flex="100" layout="column" layout-align="space-around stretch" layout-margin layout-padding>
-    <div class="md-title">Add New Event</div>
-    
-    <div ng-show="getLoading" layout="row" layout-align="space-around center">
-      <md-progress-circular class="md-warn" md-mode="indeterminate" md-diameter="90"></md-progress-circular>
-    </div>
-    
     <form name='eventForm' ng-submit="save(newEvent)" novalidate autocomplete="off" layout-padding>
-      
+      <div layout="row" layout-align="space-between center">
+        <div flex ng-hide="newEvent._id" class="md-title">Add New Event</div>
+        <div flex ng-show="newEvent._id" class="md-title">Edit {{::newEvent.title}}</div>
+        <div layout="row" layout-align="start center">
+          <md-button flex class="md-icon-button md-primary" ui-sref="home"><i class="fa fa-chevron-left fa-lg" aria-hidden="true"></i></md-button>
+          <md-tooltip md-direction="down">Go back</md-tooltip>
+        </div>
+        <div layout="row">
+            <md-button type="submit" class="md-icon-button md-primary" ng-disabled="eventForm.$invalid">
+              <md-tooltip md-direction="down">Save</md-tooltip>
+              <i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i>
+            </md-button>
+          </div>
+      </div>
+      <div ng-show="getLoading" layout="row" layout-align="space-around center">
+        <md-progress-circular class="md-warn" md-mode="indeterminate" md-diameter="90"></md-progress-circular>
+      </div>
       <div layout="column" layout-padding layout-margin>
-        
-        
-          <md-input-container class="md-icon-float md-block" flex>
-              <label><i class="material-icons">event_note</i>Event name</label>
-              <input name="title" ng-model="newEvent.title" type="text" ng-required="true">
-              
-              <div ng-messages="eventForm.title.$error" role="alert">
-                <div ng-message="required" class="my-message">You must insert a name for your event</div>
-              </div>
-          </md-input-container>
-          
-          
-            <md-datepicker name="date"
-                           ng-model="newEvent.date"
-                           md-placeholder="Date"
-                           md-min-date="minDate"
-                           ng-required="true"
-                           class="diogan"
-                           >
-            </md-datepicker>
-  
-            <div class="validation-messages" ng-messages="eventForm.date.$error" role="alert">
-              <div ng-message="required" class="my-message">Date is required</div>
+        <div layout-gt-xs="row">
+          <md-input-container class="md-block" flex-gt-xs>
+            <label><i class="material-icons">event_note</i> Title</label>
+            <input name="title" ng-model="newEvent.title" type="text" ng-required="true">
+            <div ng-messages="eventForm.title.$error" role="alert">
+              <div ng-message="required" class="my-message">You must insert a name for your event</div>
             </div>
-        
-        
+          </md-input-container>
+          <md-datepicker name="date"
+                         ng-model="newEvent.date"
+                         md-placeholder="Date"
+                         md-min-date="minDate"
+                         ng-required="true"
+                         class="my-date-picker"
+                         >
+          </md-datepicker>
+        </div>
         <md-input-container class="md-icon-float md-block" flex>
           <label><i class="material-icons">access_time</i> Time</label>
-          <input name="time" ng-model="newEvent.time" type="time" step="1800" ng-required="true">
-          
-          <div ng-messages="eventForm.time.$error" role="alert">
+          <input name="timeInput" ng-model="newEvent.time" type="time" step="1800" ng-required="true">
+          <div ng-messages="eventForm.timeInput.$error" role="alert" class="validation-messages">
             <div ng-message="time" class="my-message">You must insert a valid time format</div>
             <div ng-message="required" class="my-message">You must insert a time for your event</div>
           </div>
         </md-input-container>
-
-        
         <md-input-container class="md-icon-float md-block" flex>
           <label><i class="material-icons">location_on</i> Location</label>
           <input name="location" ng-model="newEvent.location" type="text">
         </md-input-container>
-        
         <div layout="row">
           <md-input-container class="md-icon-float md-block" flex>
             <label>Contacts</label>
-            
               <md-select name="contactSelect" 
                    ng-model="newEvent.bindedContacts"
                    md-on-close="clearSearchTerm(contactSelect)"
@@ -73,17 +69,11 @@
               </md-select>
           </md-input-container>
         </div>
-        
         <md-input-container class="md-icon-float md-block" flex>
           <label><i class="material-icons">note_add</i> Notes</label>
           <textarea rows="5" name="time" ng-model="newEvent.notes"></textarea>
         </md-input-container>
-        <div layout="row">
-          <md-button type="submit" class="md-button md-raised md-accent" ng-disabled="eventForm.$invalid">Save</md-button>
-          <md-button class="md-button md-raised md-secondary" ui-sref="home">Go back</button>
-        </div>
       </div>
-        
     </form>
   </md-whiteframe>
 </div>

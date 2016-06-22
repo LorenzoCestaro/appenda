@@ -61,7 +61,6 @@ module.exports = function () {
     req.checkBody('date').isDate();
     req.checkBody('time').isDate();
     
-    if (req.body.notes) req.checkBody('notes').isAlphanumeric();
     if (req.validationErrors()) return res.status(400).send('Bad request');
     
     Event.findByIdAndUpdate(req.params.id, {$set: req.body})

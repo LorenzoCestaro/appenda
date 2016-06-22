@@ -16,7 +16,7 @@ angular.module('appenda').controller('AddContactCtrl', function ($scope, $state,
     newContact.$save()
       .then((data) => {
         newContact = ContactsSrv.create();
-        $state.go('home');
+        $state.go('contacts');
       })
       .catch(err => console.error(err))
       .finally();
