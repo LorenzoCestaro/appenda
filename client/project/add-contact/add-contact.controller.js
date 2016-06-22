@@ -5,7 +5,7 @@ angular.module('appenda').controller('AddContactCtrl', function ($scope, $state,
     ContactsSrv.getContact($stateParams.id)
       .then(data => $scope.newContact = data)
       .catch(err => console.error(err))
-      .finally($scope.getLoading = false)
+      .finally(() => $scope.getLoading = false)
   } else {
     $scope.newContact = ContactsSrv.create();
   }

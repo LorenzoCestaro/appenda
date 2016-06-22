@@ -6,7 +6,7 @@ angular.module('appenda').controller('ContactsCtrl', function ($scope, $state, C
     ContactsSrv.query()
     .then(data => $scope.contacts = data)
     .catch(err => console.error(err))
-    .finally($scope.queryLoading = false);
+    .finally(() => $scope.queryLoading = false);
   };
   
   $scope.query();

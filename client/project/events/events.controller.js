@@ -6,7 +6,7 @@ angular.module('appenda').controller('EventsCtrl', function ($scope, EventsSrv) 
     EventsSrv.query()
     .then(data => $scope.events = data)
     .catch(err => console.error(err))
-    .finally($scope.queryLoading = false);
+    .finally(() => $scope.queryLoading = false);
   };
   
   $scope.query();

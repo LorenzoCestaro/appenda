@@ -7,6 +7,7 @@ angular.module('appenda').controller('AddEventCtrl', function ($scope, $state, $
     .finally();
   
   if ($stateParams.id) {
+    $scope.getLoading = true;
     EventsSrv.getEvent($stateParams.id)
       .then(data => {
         data.date = new Date(data.date);
@@ -14,7 +15,8 @@ angular.module('appenda').controller('AddEventCtrl', function ($scope, $state, $
         $scope.newEvent = data;
         $timeout();
       })
-      .catch(err => console.error(err));
+      .catch(err => console.error(err))
+      .finally(() => $scope.getLoading = false);
   } else {
     $scope.newEvent = EventsSrv.create();
   }

@@ -7,6 +7,7 @@ const path = require('path');
 const development = (process.env.NODE_ENV === 'production') ? false : true;
 const settings = require('./settings');
 const expressValidator = require('express-validator');
+const helmet = require('helmet');
 
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
@@ -39,6 +40,8 @@ app.use(methodOverride());
 
 // parse the cookie header and populate req.cookies
 app.use(cookieParser());
+
+app.use(helmet());
 
 // serve static files
 app.use('/public', express.static(path.join(__dirname, '..', 'public')));

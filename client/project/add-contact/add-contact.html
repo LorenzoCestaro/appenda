@@ -3,8 +3,8 @@
     <div ng-hide="newContact._id" class="md-title">Add New Contact</div>
     <div ng-show="newContact._id" class="md-title">Edit {{::newContact.name}} {{::newContact.surname}}</div>
     
-    <div ng-show="getLoading" layout="row" layout-sm="column" layout-align="space-around">
-      <md-progress-circular class="md-warn" md-mode="indeterminate" md-diameter="150"></md-progress-circular>
+    <div ng-show="getLoading" layout="row" layout-align="space-around center">
+      <md-progress-circular class="md-warn" md-mode="indeterminate" md-diameter="90"></md-progress-circular>
     </div>
     
     <form ng-hide="getLoading" name='contactForm' ng-submit="save(newContact)" novalidate autocomplete="off" flex>
@@ -58,8 +58,10 @@
         </div>
       </md-input-container>
       
-      <md-button type="submit" class="md-button md-raised md-accent" ng-disabled="contactForm.$invalid" flex>Save</md-button>
-      <md-button class="md-button md-raised md-secondary" ui-sref="home" flex>Go back</button>
+      <div layout="row">
+        <md-button type="submit" class="md-button md-raised md-accent" ng-disabled="contactForm.$invalid">Save</md-button>
+        <md-button class="md-button md-raised md-secondary" ui-sref="home">Go back</button>
+      </div>
     
     </div>
       
