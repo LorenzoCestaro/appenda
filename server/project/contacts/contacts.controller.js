@@ -47,7 +47,7 @@ module.exports = function  () {
     if (req.body.email) req.checkBody('email').isEmail();
     if (req.body.img) req.checkBody('img').isURL();
     
-    if (req.validationErrors()) return res.status(400).send('Nice try David!');
+    if (req.validationErrors()) return res.status(400).send('Bad request!');
     
     var defImg = 'http://www.golenbock.com/wp-content/uploads/2015/01/placeholder-user-400x400.png';
     req.body.img = req.body.img || defImg;

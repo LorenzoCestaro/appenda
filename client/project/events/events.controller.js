@@ -25,6 +25,7 @@ angular.module('appenda').controller('EventsCtrl', function ($scope, $mdToast, E
   
   $scope.showNotes = function (event) {
     event.showNotes = event.showNotes || false;
+    event.showing = (event.showing) ? false : true;
     return (event.showNotes) ? event.showNotes = false : event.showNotes = true;
   };
   
