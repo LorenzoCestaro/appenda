@@ -1,0 +1,83 @@
+<div layout="row" layout-padding layout-wrap style="padding-bottom: 32px;">
+  <md-whiteframe class="md-whiteframe-5dp" flex="100" layout="column" layout-align="space-around stretch" layout-margin layout-padding>
+    <form name='eventForm' ng-submit="save(newEvent)" novalidate autocomplete="off" layout-padding>
+      <div layout="row" layout-align="space-between center">
+        <div flex ng-hide="newEvent._id" class="md-title">Add New Event</div>
+        <div flex ng-show="newEvent._id" class="md-title">Edit {{::newEvent.title}}</div>
+        <div layout="row" layout-align="start center">
+          <md-button flex class="md-icon-button md-primary" ui-sref="home"><i class="fa fa-chevron-left fa-lg" aria-hidden="true"></i></md-button>
+          <md-tooltip md-direction="down">Go back</md-tooltip>
+        </div>
+        <div layout="row">
+            <md-button type="submit" class="md-icon-button md-primary" ng-disabled="eventForm.$invalid">
+              <md-tooltip md-direction="down">Save</md-tooltip>
+              <i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i>
+            </md-button>
+          </div>
+      </div>
+      <div ng-show="getLoading" layout="row" layout-align="space-around center">
+        <md-progress-circular class="md-warn" md-mode="indeterminate" md-diameter="90"></md-progress-circular>
+      </div>
+      <div layout="column" layout-padding layout-margin>
+        <div layout-gt-xs="row">
+          <md-input-container class="md-block" flex-gt-xs>
+            <label><i class="material-icons">event_note</i> Title</label>
+            <input name="title" ng-model="newEvent.title" type="text" ng-required="true">
+            <div ng-messages="eventForm.title.$error" role="alert">
+              <div ng-message="required" class="my-message">You must insert a name for your event</div>
+            </div>
+          </md-input-container>
+          <md-datepicker name="date"
+                         ng-model="newEvent.date"
+                         md-placeholder="Date"
+                         md-min-date="minDate"
+                         ng-required="true"
+                         class="my-date-picker"
+                         >
+          </md-datepicker>
+        </div>
+        <md-input-container class="md-icon-float md-block" flex>
+          <label><i class="material-icons">access_time</i> Time</label>
+          <input name="timeInput" ng-model="newEvent.time" type="time" step="1800" ng-required="true">
+          <div ng-messages="eventForm.timeInput.$error" role="alert" class="validation-messages">
+            <div ng-message="time" class="my-message">You must insert a valid time format</div>
+            <div ng-message="required" class="my-message">You must insert a time for your event</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-icon-float md-block" flex>
+          <label><i class="material-icons">location_on</i> Location</label>
+          <input name="location" ng-model="newEvent.location" type="text">
+        </md-input-container>
+        <div layout="row">
+          <md-input-container class="md-icon-float md-block" flex>
+            <label>Contacts</label>
+              <md-select name="contactSelect" 
+                   ng-model="newEvent.bindedContacts"
+                   md-on-close="clearSearchTerm(contactSelect)"
+                   data-md-container-class="selectdemoSelectHeader"
+                   multiple>
+                <md-select-header class="demo-select-header">
+                  <input ng-model="searchTerm"
+                     type="search"
+                     placeholder="Search for contacts..."
+                     class="demo-header-searchbox _md-text">
+                </md-select-header>
+                <md-optgroup label="contacts">
+                  <md-option ng-value="contact._id" ng-repeat="contact in contacts |
+                    filter:searchTerm">{{contact.name}} {{contact.surname}}</md-option>
+                </md-optgroup>
+              </md-select>
+          </md-input-container>
+        </div>
+        <md-input-container class="md-icon-float md-block" flex>
+          <label><i class="material-icons">note_add</i> Notes</label>
+          <input md-maxlength="100" name="time" ng-model="newEvent.notes">
+          
+        <div ng-messages="eventForm.notes.$error">
+          <div ng-message="md-maxlength">The notes have to be less than 100 characters long.</div>
+        </div>
+        </md-input-container>
+      </div>
+    </form>
+  </md-whiteframe>
+</div>

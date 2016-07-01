@@ -1,0 +1,77 @@
+<div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
+  <md-whiteframe class="md-whiteframe-5dp" flex="100" layout="column" layout-align="space-around stretch" layout-margin layout-padding>
+    <form ng-hide="getLoading" name='contactForm' ng-submit="save(newContact)" novalidate autocomplete="off" flex>
+      <div layout="row" layout-align="space-between center">
+        <div flex ng-hide="newContact._id" class="md-title">Add New Contact</div>
+        <div flex ng-show="newContact._id" class="md-title">Edit {{::newContact.name}} {{::newContact.surname}}</div>
+        <div layout="row" layout-align="start center">
+          <md-button flex class="md-icon-button md-primary" ui-sref="contacts"><i class="fa fa-chevron-left fa-lg" aria-hidden="true"></i></md-button>
+            <md-tooltip md-direction="down">Go back</md-tooltip>
+        </div>
+        <div layout="row">
+            <md-button type="submit" class="md-icon-button md-primary" ng-disabled="contactForm.$invalid">
+              <md-tooltip md-direction="down">Save</md-tooltip>
+              <i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i>
+            </md-button>
+          </div>
+      </div>
+  
+      <div ng-show="getLoading" layout="row" layout-align="space-around center">
+        <md-progress-circular class="md-warn" md-mode="indeterminate" md-diameter="90"></md-progress-circular>
+      </div>
+
+      <div layout="column" layout-padding layout-margin>
+
+        <div layout="row" layout-align="space-between center">
+          <md-input-container class="md-icon-float md-block" flex="45">
+            <label><i class="material-icons">account_circle</i> Name</label>
+            <input name="name" ng-model="newContact.name" type="text" ng-required="true">
+
+            <div ng-messages="contactForm.name.$error" role="alert">
+              <div ng-message="required" class="my-message">You must insert a contact name</div>
+            </div>
+          </md-input-container>
+
+          <md-input-container class="md-icon-float md-block" flex="45">
+            <label><i class="material-icons">account_circle</i> Surname</label>
+            <input name="surname" ng-model="newContact.surname" type="text" ng-required="true">
+
+            <div ng-messages="contactForm.surname.$error" md-auto-hide="true" role="alert">
+              <div ng-message="required" class="my-message">You must insert a contact surname</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <md-input-container md-no-float class="md-block">
+          <label><i class="material-icons">phone</i> Phone</label>
+          <input name="phone" ng-model="newContact.phone" ng-pattern="/^[0-9]{9,10}$/" ng-required="true">
+
+          <div ng-messages="contactForm.phone.$error" role="alert">
+            <div ng-message-exp="['required', 'pattern']" class="my-message">You must insert a ten digit number</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label><i class="material-icons">email</i> Email</label>
+          <input name="email" ng-pattern="/^.+@.+\..+$/" ng-model="newContact.email" type="email">
+
+          <div ng-messages="contactForm.email.$error" role="alert">
+            <div ng-message="pattern" class="my-message">You must insert a valid email.</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label><i class="material-icons">image</i> Image Url</label>
+          <input name="img" ng-model="newContact.img" type="url">
+
+          <div ng-messages="ContactCtrl.contactForm.img.$error" role="alert">
+            <div ng-message="url" class="my-message">You must insert a valid url</div>
+          </div>
+        </md-input-container>
+
+        
+      </div>
+
+    </form>
+  </md-whiteframe>
+</div>

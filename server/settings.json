@@ -1,0 +1,3 @@
+{
+  "mongoUrl": "mongodb://app:artoo@ds025742.mlab.com:25742/artoo-mean"
+}

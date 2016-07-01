@@ -1,0 +1,55 @@
+<div layout="row">
+  <div class="md-display-1" layout-margin layout-padding>Events</div>
+  <md-content layout="row" layout-align="end center">
+    <md-button ng-disabled="queryLoading" class="md-icon-button md-primary" ui-sref="add-event">
+      <md-tooltip md-direction="down">New event</md-tooltip>
+      <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
+    </md-button>
+    <md-button class="md-icon-button md-primary" ng-disabled="queryLoading"  ng-click="query()">
+      <md-tooltip md-direction="down">Refresh</md-tooltip>
+      <i class="fa fa-refresh fa-2x" aria-hidden="true"></i>
+    </md-button>
+  </md-content>
+</div>
+
+<div layout-margin layout-padding>
+  <md-input-container class="md-block" flex>
+    <label><i class="material-icons">search</i> Find an event</label>
+    <input type="text" ng-model="search"/>
+  </md-input-container>
+</div>
+
+<div ng-show="queryLoading" layout="row" layout-align="space-around center">
+  <md-progress-circular class="md-warn" md-mode="indeterminate" md-diameter="150"></md-progress-circular>
+</div>
+
+<md-list ng-hide="queryLoading" flex layout-margin>
+  <md-list-item md-whiteframe="3"  class="md-3-line" ng-click="null" ng-repeat="event in events | filterTitle:search | orderBy:'date'">
+    <div class="md-list-item-text" layout="column">
+      <h3><strong>{{event.title}}</strong></h3>
+      <h4>{{event.date | date:"dd/MM/yyyy"}} - {{event.time | date:"HH:mm"}}</h4>
+      <p>{{event.location}}</p>
+      <p ng-show="event.showNotes"><strong>Notes: </strong>{{event.notes}}</p>
+    </div>
+    <div layout="row">
+    <md-tab-item>
+      <md-button ng-show="event.notes" ng-click="showNotes(event)" class="md-primary md-icon-button" ng-click="showListBottomSheet()">
+        <md-tooltip md-direction="down">
+          <span ng-hide="event.showing">Show Notes</span>
+          <span ng-show="event.showing">Hide Notes</span>
+        </md-tooltip>
+        <i ng-hide="event.showing" class="fa fa-bars fa-2x" aria-hidden="true"></i>
+        <i ng-show="event.showing" class="fa fa-times fa-2x" aria-hidden="true"></i>
+        </md-button>
+    </md-tab-item>
+      <md-button class="md-icon-button md-primary" ui-sref="add-event({id: event._id})">
+        <md-tooltip md-direction="down">Edit</md-tooltip>
+        <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
+      </md-button>
+      <md-button ng-click="showDeleteToast(event); remove(event)" class="md-icon-button md-warn">
+        <md-tooltip md-direction="down">Delete</md-tooltip>
+        <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+      </md-dbutton>
+    </div>
+  </md-list-item>
+</md-list>

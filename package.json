@@ -1,0 +1,48 @@
+{
+  "name": "artoo-campus",
+  "version": "1.0.0",
+  "description": "MEAN exercises and example for ArToo Campus",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weboxstudio/artoo-campus.git"
+  },
+  "author": "David Sorrentino",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/weboxstudio/artoo-campus/issues"
+  },
+  "homepage": "https://github.com/weboxstudio/artoo-campus#readme",
+  "dependencies": {
+    "angular": "^1.5.6",
+    "angular-animate": "^1.5.5",
+    "angular-aria": "^1.5.5",
+    "angular-material": "^1.0.9",
+    "angular-material-datetimepicker": "^1.4.0",
+    "angular-messages": "^1.5.5",
+    "angular-mocks": "^1.5.5",
+    "angular-resource": "^1.5.7",
+    "angular-route": "^1.5.5",
+    "angular-sanitize": "^1.5.5",
+    "angular-ui-router": "^0.3.1",
+    "bluebird": "^3.4.1",
+    "body-parser": "^1.15.1",
+    "cookie-parser": "^1.4.1",
+    "es6-shim": "^0.35.1",
+    "express": "^4.14.0",
+    "express-validator": "^2.20.7",
+    "gulp": "^3.9.1",
+    "helmet": "^2.1.1",
+    "material": "^0.1.1",
+    "method-override": "^2.3.5",
+    "mongoose": "^4.5.1",
+    "morgan": "^1.7.0"
+  },
+  "devDependencies": {
+    "connect-livereload": "^0.5.4",
+    "gulp-live-server": "0.0.29"
+  }
+}
