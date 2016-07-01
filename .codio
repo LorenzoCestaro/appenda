@@ -1,0 +1,15 @@
+{
+  // Configure your Run and Preview buttons here.
+
+  // Run button configuration
+  "commands": {
+    "Start server": "gulp",
+    "Node version": "node --version"
+  },
+
+  // Preview button configuration
+  "preview": {
+    "Project Index (static)": "http://{{domain}}/{{index}}",
+    "Box URL": "http://{{domain}}:3000/"
+  }
+}

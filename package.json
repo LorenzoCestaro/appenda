@@ -34,7 +34,10 @@
     "es6-shim": "^0.35.1",
     "express": "^4.14.0",
     "express-validator": "^2.20.7",
+<<<<<<< HEAD
     "gulp": "^3.9.1",
+=======
+>>>>>>> 938ec140c3b8e76a21178b7ff0d1c86212ba6f4d
     "helmet": "^2.1.1",
     "material": "^0.1.1",
     "method-override": "^2.3.5",
